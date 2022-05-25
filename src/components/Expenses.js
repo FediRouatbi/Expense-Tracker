@@ -12,12 +12,7 @@ const Expenses = () => {
         <div className="expenses__title--column">amount</div>
         <div className="expenses__title--column">date</div>
       </div>
-      <div className="expenses__items">
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-      </div>
+      <div className="expenses__items"></div>
     </div>
   );
 };
