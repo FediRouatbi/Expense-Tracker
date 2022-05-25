@@ -2,7 +2,8 @@ import React from "react";
 import "./aside.scss";
 import { IoIosArrowDown } from "react-icons/io";
 import img from "../f.png";
-import Title from "./Title.js";
+import Title from "./Title";
+import Recurred from "./Recurred";
 const Aside = () => {
   return (
     <aside className="aside">
@@ -12,7 +13,9 @@ const Aside = () => {
         <IoIosArrowDown className="account__logo" />
       </div>
       <Title text="Recurring" />
-      <div className="expense"></div>
+      <div className="expense">
+        <Recurred />
+      </div>
     </aside>
   );
 };

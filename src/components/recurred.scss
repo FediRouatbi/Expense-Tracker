@@ -1,0 +1,27 @@
+.recurred {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__amount {
+    font-weight: 700;
+    margin-right: 0.7em;
+  }
+  &__data {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 1em;
+    text-transform: capitalize;
+    &--about-name {
+    }
+    &--about-business {
+      color: #adb5bd;
+    }
+    &--img {
+      width: 30px;
+      height: 30px;
+      background-color: red;
+      border-radius: 8px;
+    }
+  }
+}

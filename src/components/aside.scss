@@ -1,6 +1,9 @@
 .aside {
   width: 40%;
   padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
 }
 .account {
   display: flex;
@@ -10,7 +13,6 @@
   align-items: center;
   width: 50%;
   border-radius: 80px;
-  margin-bottom: 5vh;
 
   gap: 0.5em;
   :last-child {
@@ -24,4 +26,3 @@
     border-radius: 50%;
   }
 }
-

@@ -1,0 +1,45 @@
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 0;
+  & + .item {
+    border-top: 1px solid #aaa;
+  }
+  &__type {
+    width: 15%;
+    text-align: center;
+    color: #adb5bd;
+  }
+  &__amount {
+    width: 15%;
+    text-align: center;
+  }
+  &__date {
+    width: 15%;
+    text-align: center;
+    color: #adb5bd;
+  }
+  &__data {
+    width: 30%;
+    display: flex;
+    gap: 1em;
+
+    align-items: center;
+    &--img {
+      width: 30px;
+      height: 30px;
+      background-color: red;
+      border-radius: 8px;
+    }
+    &--about {
+      text-transform: capitalize;
+      &_name {
+        font-weight: 600;
+      }
+      &-business {
+        color: #adb5bd;
+      }
+    }
+  }
+}
