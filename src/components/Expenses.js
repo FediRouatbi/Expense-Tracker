@@ -1,6 +1,7 @@
 import React from "react";
 import Title from "./Title";
 import "./expenses.scss";
+import Item from "./Item";
 const Expenses = () => {
   return (
     <div className="expenses">
