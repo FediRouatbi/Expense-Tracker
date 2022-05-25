@@ -1,0 +1,27 @@
+.aside {
+  width: 40%;
+  padding: 1em;
+}
+.account {
+  display: flex;
+  padding: 0.5em;
+  margin-left: auto;
+  background-color: #e9ecef;
+  align-items: center;
+  width: 50%;
+  border-radius: 80px;
+  margin-bottom: 5vh;
+
+  gap: 0.5em;
+  :last-child {
+    margin-left: auto;
+  }
+  &__logo {
+    cursor: pointer;
+  }
+  &__img {
+    width: 25px;
+    border-radius: 50%;
+  }
+}
+

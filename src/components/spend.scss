@@ -1,0 +1,29 @@
+.spend {
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  background-color: #f1f3f5;
+  padding: 1em;
+  gap: 1em;
+  &__icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: #ced4da;
+  }
+  &__data {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+    &--text {
+      color: #868e96;
+    }
+    &--amount {
+      font-size: 24px;
+      font-weight: 600;
+    }
+  }
+}

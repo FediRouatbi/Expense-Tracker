@@ -1,0 +1,14 @@
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-weight: 700;
+
+  &__view {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    color: #40c057;
+    cursor: pointer;
+  }
+}
