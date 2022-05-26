@@ -5,11 +5,16 @@
   display: flex;
   flex-direction: column;
   gap: 2em;
+  animation: widthAnimation 0.3s ease;
+  transition: all 0.3s ease-in-out;
 }
 .logo {
   display: flex;
   align-items: center;
-
+  &__close {
+    margin-left: auto;
+    cursor: pointer;
+  }
   &__img {
     width: 20px;
     height: 20px;
@@ -46,5 +51,19 @@
     &--logo {
       font-size: 18px;
     }
+  }
+}
+
+.hidden {
+  transform: translateX(-200px);
+  width: 0px;
+  padding: 0;
+}
+@keyframes widthAnimation {
+  from {
+    transform: translateX(-200px);
+  }
+  to {
+    transform: translateX(0px);
   }
 }
