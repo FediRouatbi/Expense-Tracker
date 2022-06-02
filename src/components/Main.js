@@ -6,7 +6,6 @@ import Expenses from "./Expenses";
 const Main = () => {
   return (
     <main className="main">
-      <div className="dashboard">dashboard</div>
       <Spendings />
       <Curve />
       <Expenses />

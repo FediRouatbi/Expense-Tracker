@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import "./nav.scss";
 import { FaHome } from "react-icons/fa";
 import { ImStatsDots } from "react-icons/im";
-import { IoMdSettings } from "react-icons/io";
 import { BiLogOut } from "react-icons/bi";
 import { AiOutlineCloseCircle, AiOutlineMenu } from "react-icons/ai";
 import logo from "../letter-m.png";
+import { IoMdSettings } from "react-icons/io";
+import { Link } from "react-router-dom";
+
 const Nav = () => {
-  const [active, setActive] = useState(false);
   const [hidden, setHidden] = useState("");
   return (
     <>
@@ -18,37 +19,36 @@ const Nav = () => {
           <AiOutlineCloseCircle
             className="logo__close"
             onClick={() => {
-              setActive(true);
               setHidden("hidden");
             }}
           />
         </div>
 
         <ul className="navigation">
-          <li className="navigation__item">
+          <Link className="navigation__item" to={"/"}>
             <FaHome className="navigation__item--logo" />
-            <div className="navigation__item--text"> dashboard</div>
-          </li>
-          <li className="navigation__item">
+
+            <div className="navigation__item--text">dashboard</div>
+          </Link>
+          <Link className="navigation__item" to={"/expenses"}>
             <ImStatsDots className="navigation__item--logo" />
             <div className="navigation__item--text">expenses</div>
-          </li>
-          <li className="navigation__item">
+          </Link>
+          <Link className="navigation__item" to={"/settings"}>
             <IoMdSettings className="navigation__item--logo" />
             <div className="navigation__item--text">settings</div>
-          </li>
+          </Link>
           <li className="navigation__item">
             <BiLogOut className="navigation__item--logo" />
             <div className="navigation__item--text">logout</div>
           </li>
         </ul>
       </nav>
-      {active && (
+      {hidden && (
         <AiOutlineMenu
           style={{ margin: "1em", cursor: "pointer" }}
           size={30}
           onClick={() => {
-            setActive(false);
             setHidden("");
           }}
         />

@@ -8,3 +8,6 @@
 html {
   font-family: "Prompt", sans-serif;
 }
+#root {
+  height: 100vh;
+}

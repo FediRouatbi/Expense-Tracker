@@ -1,12 +1,10 @@
 .main {
-  width: 100%;
+  width: 60%;
   padding: 1em;
   display: flex;
   flex-direction: column;
+  align-items: stretch;
   gap: 2em;
-}
-.dashboard {
-  text-transform: capitalize;
-  font-size: 25px;
-  font-weight: 700;
+  margin-top: 70px;
+  overflow: auto;
 }

@@ -2,3 +2,8 @@
   height: 100vh;
   display: flex;
 }
+.flex {
+  display: flex;
+  flex-grow: 1;
+  
+}
