@@ -10,24 +10,23 @@ function App() {
   return (
     <BrowserRouter>
       <Sticky />
-    
-        <div className="container">
-          <Nav />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <div className="flex">
-                  <Main />
-                  <Aside />
-                </div>
-              }
-            />
-            <Route path="/expenses" element={<AllExpenses />} />
-            <Route path="/Settings" element={<Settings />} />
-          </Routes>
-        </div>
-     
+
+      <div className="containerr">
+        <Nav />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <div className="flex">
+                <Main />
+                <Aside />
+              </div>
+            }
+          />
+          <Route path="/expenses" element={<AllExpenses />} />
+          <Route path="/Settings" element={<Settings />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }

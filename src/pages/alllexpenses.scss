@@ -1,54 +1,26 @@
 .alllexpenses {
-  overflow: auto;
-  margin-top: 70px;
-  padding: 1em;
-  width: 80%;
-  .add {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding: 2em;
-
-    input {
-      font-size: 1.1rem;
-      outline: 0;
-      padding: 0.5em;
-      border-radius: 8px;
-      border: 1px solid;
-    }
-    button {
-      outline: 0;
-      border: 0;
-      padding: 1em 2em;
-    }
-  }
+  padding: 3em 0 0 3em;
+  width: 60%;
+  height: 100%;
+  transition: all 0.5s ease-in;
+}
+.add {
+  display: flex;
+  gap: 2em;
+  padding-bottom: 2em;
+  align-items: center;
 }
 
+.hideit {
+  visibility: hidden;
+}
 .table {
-  border-top: 1px solid #aaa;
-  text-align: left;
-  width: 100%;
-  margin: 0 auto;
-  border-spacing: 0 15px;
-
-  &__tr {
-    text-align: center;
-    &:nth-child(even) {
-      background-color: #fff5f5;
-    }
-
-    &--th,
-    &--td {
-      width: 30%;
-    }
-  }
+  margin-top: 2em;
 }
-.select {
-  width: 7rem;
-  height: 2rem;
-  font-size: 1.2rem;
-  border-radius: 8px;
-  padding: 0.2em;
-  cursor: pointer;
-  margin: 0 1em;
+table th:is(:not(:first-child)),
+td {
+  text-align: center;
+}
+.input-group {
+  align-items: center !important;
 }

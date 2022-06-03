@@ -5,7 +5,7 @@ import { AiFillEdit } from "react-icons/ai";
 const Item = (props) => {
   return (
     <tr className="table__tr">
-      <td className="table__tr--th disp">
+      <td className="table__tr--th disp" colSpan={3}>
         <div className="flexi">
           <div className="item__data--img">
             <img src="" alt="" />

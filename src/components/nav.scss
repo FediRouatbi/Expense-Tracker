@@ -1,4 +1,4 @@
-.nav {
+.navv {
   width: 12%;
   background-color: #e9ecef;
   padding: 1em;
@@ -27,7 +27,7 @@
     margin-left: 0.5em;
   }
 }
-.navigation {
+.nav {
   height: 100%;
   list-style: none;
   display: flex;
@@ -47,6 +47,8 @@
     cursor: pointer;
     margin-bottom: 1em;
     &:hover {
+      color: inherit;
+      text-decoration: none;
       background-color: #c0eb75;
     }
 

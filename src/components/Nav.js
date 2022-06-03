@@ -12,7 +12,7 @@ const Nav = () => {
   const [hidden, setHidden] = useState("");
   return (
     <>
-      <nav className={`nav ${hidden}`}>
+      <nav className={`navv ${hidden}`}>
         <div className="logo">
           <img src={logo} alt="" className="logo__img" />
           <span className="logo__text">Maglo</span>
@@ -24,24 +24,24 @@ const Nav = () => {
           />
         </div>
 
-        <ul className="navigation">
-          <Link className="navigation__item" to={"/"}>
-            <FaHome className="navigation__item--logo" />
+        <ul className="nav">
+          <Link className="nav__item" to={"/"}>
+            <FaHome className="nav__item--logo" />
 
-            <div className="navigation__item--text">dashboard</div>
+            <div className="nav__item--text">dashboard</div>
           </Link>
-          <Link className="navigation__item" to={"/expenses"}>
-            <ImStatsDots className="navigation__item--logo" />
-            <div className="navigation__item--text">expenses</div>
+          <Link className="nav__item" to={"/expenses"}>
+            <ImStatsDots className="nav__item--logo" />
+            <div className="nav__item--text">expenses</div>
           </Link>
-          <Link className="navigation__item" to={"/settings"}>
-            <IoMdSettings className="navigation__item--logo" />
-            <div className="navigation__item--text">settings</div>
+          <Link className="nav__item" to={"/settings"}>
+            <IoMdSettings className="nav__item--logo" />
+            <div className="nav__item--text">settings</div>
           </Link>
-          <li className="navigation__item">
-            <BiLogOut className="navigation__item--logo" />
-            <div className="navigation__item--text">logout</div>
-          </li>
+          <Link className="nav__item" to={"/settings"}>
+            <BiLogOut className="nav__item--logo" />
+            <div className="nav__item--text">logout</div>
+          </Link>
         </ul>
       </nav>
       {hidden && (
