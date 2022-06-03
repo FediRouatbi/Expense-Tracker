@@ -1,3 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .input {
+    @apply border-2 border-gray-800 rounded-xl py-1 px-2 text-lg w-40;
+  }
+}
 *,
 *:after,
 *::before {

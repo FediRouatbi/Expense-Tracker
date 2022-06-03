@@ -38,10 +38,10 @@ const Nav = () => {
             <IoMdSettings className="navigation__item--logo" />
             <div className="navigation__item--text">settings</div>
           </Link>
-          <li className="navigation__item">
+          <Link className="navigation__item" to={"/settings"}>
             <BiLogOut className="navigation__item--logo" />
             <div className="navigation__item--text">logout</div>
-          </li>
+          </Link>
         </ul>
       </nav>
       {hidden && (

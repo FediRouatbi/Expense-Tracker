@@ -1,27 +1,6 @@
 .alllexpenses {
-  overflow: auto;
-  margin-top: 70px;
-  padding: 1em;
+  padding: 2em;
   width: 80%;
-  .add {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding: 2em;
-
-    input {
-      font-size: 1.1rem;
-      outline: 0;
-      padding: 0.5em;
-      border-radius: 8px;
-      border: 1px solid;
-    }
-    button {
-      outline: 0;
-      border: 0;
-      padding: 1em 2em;
-    }
-  }
 }
 
 .table {
@@ -43,12 +22,6 @@
     }
   }
 }
-.select {
-  width: 7rem;
-  height: 2rem;
-  font-size: 1.2rem;
-  border-radius: 8px;
-  padding: 0.2em;
-  cursor: pointer;
-  margin: 0 1em;
+.hide {
+  visibility: hidden;
 }
