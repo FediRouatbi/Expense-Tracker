@@ -6,24 +6,4 @@
   flex-direction: column;
   margin-top: auto;
   gap: 1em;
-
-  &__title {
-    display: flex;
-    justify-content: space-between;
-    &--column {
-      width: 15%;
-      text-align: center;
-      text-transform: uppercase;
-      color: #adb5bd;
-      font-weight: 500;
-      &:first-child {
-        text-align: start;
-        width: 30%;
-      }
-    }
-  }
-  &__items {
-    display: flex;
-    flex-direction: column;
-  }
 }

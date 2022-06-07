@@ -10,9 +10,9 @@ const Expenses = () => {
         <thead>
           <tr className="table__tr">
             <th className="table__tr--th">name/business</th>
-            <th className="table__tr--th">type</th>
-            <th className="table__tr--th">amount</th>
-            <th className="table__tr--th">date</th>
+            <th>type</th>
+            <th>amount</th>
+            <th>date</th>
           </tr>
         </thead>
         <tbody>

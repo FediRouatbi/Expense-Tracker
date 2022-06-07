@@ -36,7 +36,7 @@ const AllExpenses = () => {
       </div>
 
       <form
-        className={`flex my-8 w-3/4 justify-between ${
+      className={`flex my-8 w-3/4 justify-between ${
           addExpense ? "" : "hide"
         } `}
       >
@@ -51,7 +51,7 @@ const AllExpenses = () => {
       <table className="table 	">
         <thead>
           <tr className="table__tr ">
-            <th className="table__tr--th">Name/BUSINESS</th>
+            <th className="table__tr--th">NAME/BUSINESS</th>
             <th>TYPE</th>
             <th>AMOUNT</th>
             <th>DATE</th>

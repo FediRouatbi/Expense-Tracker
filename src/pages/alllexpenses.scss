@@ -16,10 +16,16 @@
       background-color: #fff5f5;
     }
 
+    &--th {
+      text-align: start;
+    }
     &--th,
     &--td {
       width: 30%;
     }
+  }
+  th {
+    text-transform: uppercase;
   }
 }
 .hide {

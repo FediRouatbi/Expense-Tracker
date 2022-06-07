@@ -36,6 +36,10 @@
     margin-top: auto;
   }
   &__item {
+    &.activelink,
+    &.activelink:hover {
+      background-color: #868e96;
+    }
     text-transform: capitalize;
     text-decoration: none;
     color: inherit;
