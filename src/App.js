@@ -8,13 +8,15 @@ import AllExpenses from "./pages/AllExpenses";
 import Settings from "./pages/Settings";
 import Login from "./pages/Login";
 function App() {
+  
+
   return (
     <BrowserRouter>
-      <Sticky />
-
       <div className="container">
+        <Sticky />
         <Nav />
         <Routes>
+          <Route path="/" element={<Login />} />
           <Route
             path="/home"
             element={
@@ -26,7 +28,6 @@ function App() {
           />
           <Route path="/expenses" element={<AllExpenses />} />
           <Route path="/Settings" element={<Settings />} />
-          <Route path="/" element={<Login />} />
         </Routes>
       </div>
     </BrowserRouter>

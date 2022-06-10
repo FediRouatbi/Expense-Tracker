@@ -1,9 +1,15 @@
 .container {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
 }
 .flex {
   display: flex;
   flex-grow: 1;
   
+}
+
+.login{
+  height: 100vh;
+  width: 400px;
+ background-color: #acc
 }

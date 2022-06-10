@@ -22,3 +22,8 @@ body {
 #root {
   height: 100vh;
 }
+
+select{
+  outline: none;
+  border: none;
+}
