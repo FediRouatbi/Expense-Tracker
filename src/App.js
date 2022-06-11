@@ -10,24 +10,25 @@ import Login from "./pages/Login";
 function App() {
   return (
     <BrowserRouter>
-      <Sticky />
-
-      <div className="container">
+      <div className="mycontainer">
         <Nav />
-        <Routes>
-          <Route
-            path="/home"
-            element={
-              <div className="flex">
-                <Main />
-                <Aside />
-              </div>
-            }
-          />
-          <Route path="/expenses" element={<AllExpenses />} />
-          <Route path="/Settings" element={<Settings />} />
-          <Route path="/" element={<Login />} />
-        </Routes>
+        <div className="container__inner">
+          <Sticky />
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route
+              path="/home"
+              element={
+                <div className="myflex">
+                  <Main />
+                  <Aside />
+                </div>
+              }
+            />
+            <Route path="/expenses" element={<AllExpenses />} />
+            <Route path="/Settings" element={<Settings />} />
+          </Routes>
+        </div>
       </div>
     </BrowserRouter>
   );

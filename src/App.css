@@ -1,9 +1,22 @@
-.container {
-  height: 100vh;
+.mycontainer {
+  width: 100%;
+  min-height: 100vh;
   display: flex;
+  background-color: #acc;
 }
-.flex {
+.container__inner{
+  width: inherit;
+}
+
+.myflex {
   display: flex;
-  flex-grow: 1;
+  /* flex-grow: 1; */
+  justify-content: space-between;
+  justify-items: center;
   
+}
+
+.login{
+  height: 100vh;
+ background-color: #acc
 }
