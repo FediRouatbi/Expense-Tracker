@@ -26,4 +26,5 @@ body {
 select{
   outline: none;
   border: none;
+  cursor: pointer;
 }
