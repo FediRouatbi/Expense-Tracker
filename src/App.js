@@ -8,10 +8,10 @@ import AllExpenses from "./pages/AllExpenses";
 import Settings from "./pages/Settings";
 import Login from "./pages/Login";
 import SingUp from "./pages/SingUp";
-import { useState } from "react";
+
 function App() {
-  const [user, setUser] = useState(true);
-  setUser(true);
+  const user = true;
+
   return (
     <BrowserRouter>
       {user ? (
