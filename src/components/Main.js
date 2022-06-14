@@ -5,7 +5,7 @@ import Curve from "./Curve";
 import Expenses from "./Expenses";
 const Main = () => {
   return (
-    <main className="main">
+    <main className="main p-4 pt-16">
       <Spendings />
       <Curve />
       <Expenses />

@@ -57,7 +57,7 @@ const Nav = () => {
           </Link>
           <Link className="navigation__item" to={"/"}>
             <BiLogOut className="navigation__item--logo" />
-            <div className="navigation__item--text">logout</div>
+            <div className="navigation__item--text"> Sign out</div>
           </Link>
         </ul>
       </nav>
@@ -65,6 +65,7 @@ const Nav = () => {
         <AiOutlineMenu
           style={{ margin: "1em", cursor: "pointer" }}
           size={30}
+          className="absolute top-2  left-2  animate-wiggle "
           onClick={() => {
             setHidden("");
           }}

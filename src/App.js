@@ -7,29 +7,38 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AllExpenses from "./pages/AllExpenses";
 import Settings from "./pages/Settings";
 import Login from "./pages/Login";
+import SingUp from "./pages/SingUp";
+import { useState } from "react";
 function App() {
+  const [user, setUser] = useState(true);
   return (
     <BrowserRouter>
-      <div className="mycontainer">
-        <Nav />
-        <div className="container__inner">
-          <Sticky />
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route
-              path="/home"
-              element={
-                <div className="myflex">
-                  <Main />
-                  <Aside />
-                </div>
-              }
-            />
-            <Route path="/expenses" element={<AllExpenses />} />
-            <Route path="/Settings" element={<Settings />} />
-          </Routes>
+      {user ? (
+        <div className="mycontainer">
+          <Nav />
+          <div className="container__inner">
+            <Sticky />
+            <Routes>
+              <Route
+                path="/home"
+                element={
+                  <div className="myflex">
+                    <Main />
+                    <Aside />
+                  </div>
+                }
+              />
+              <Route path="/expenses" element={<AllExpenses />} />
+              <Route path="/Settings" element={<Settings />} />
+            </Routes>
+          </div>
         </div>
-      </div>
+      ) : (
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/signup" element={<SingUp />} />
+        </Routes>
+      )}
     </BrowserRouter>
   );
 }

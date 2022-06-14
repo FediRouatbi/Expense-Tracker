@@ -6,7 +6,7 @@ import Item from "../components/Item";
 const AllExpenses = () => {
   const [addExpense, setAddExpense] = useState(false);
   return (
-    <div className="alllexpenses">
+    <div className="alllexpenses p-4 pt-16">
       <div className="flex w-3/4 items-center justify-between ">
         <div className="flex items-center gap-3">
           <label>Filter by :</label>
@@ -36,7 +36,7 @@ const AllExpenses = () => {
       </div>
 
       <form
-      className={`flex my-8 w-3/4 justify-between ${
+        className={`flex my-8 w-3/4 justify-between ${
           addExpense ? "" : "hide"
         } `}
       >
