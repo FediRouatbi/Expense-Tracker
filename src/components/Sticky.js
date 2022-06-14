@@ -3,7 +3,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import img from "../f.png";
 import "./sticky.scss";
 import { Link } from "react-router-dom";
-const Sticky = () => {
+const Sticky = ({ setUser }) => {
   const [open, setOpen] = useState(false);
   const toogle = () => {
     setOpen((prev) => !prev);
@@ -11,7 +11,7 @@ const Sticky = () => {
   return (
     <div className="absolute top-4 right-6">
       <button
-        class="text-black bg-gray-300 focus:ring-4 focus:outline-none focus:ring-sky-200 font-medium rounded-lg text-sm px-4 py-2 flex justify-center items-center gap-2  "
+        className="text-black bg-gray-300 focus:ring-4 focus:outline-none focus:ring-sky-200 font-medium rounded-lg text-sm px-4 py-2 flex justify-center items-center gap-2  "
         type="button"
         onClick={() => toogle()}
       >
@@ -22,21 +22,16 @@ const Sticky = () => {
       </button>
 
       <div
-        id="dropdown"
-        class={`z-10 ${
+        className={`z-10 ${
           open ? "" : "hidden"
         } bg-white divide-y divide-gray-100 rounded shadow w-38 dark:bg-gray-700`}
-        data-popper-placement="bottom"
       >
-        <ul
-          class="py-1 text-sm text-gray-700 dark:text-gray-200"
-          aria-labelledby="dropdownDefault"
-        >
+        <ul className="py-1 text-sm text-gray-700 dark:text-gray-200">
           <li>
             <Link
               onClick={() => toogle()}
               to="/home"
-              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
             >
               Dashboard
             </Link>
@@ -45,7 +40,7 @@ const Sticky = () => {
             <Link
               onClick={() => toogle()}
               to="/expenses"
-              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
             >
               Expenses
             </Link>
@@ -54,16 +49,19 @@ const Sticky = () => {
             <Link
               onClick={() => toogle()}
               to="/settings"
-              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
             >
               Settings
             </Link>
           </li>
           <li>
             <Link
-              onClick={() => toogle()}
-              to="/settings"
-              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              onClick={() => {
+                toogle();
+                setUser(false);
+              }}
+              to="/"
+              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
             >
               Sign out
             </Link>

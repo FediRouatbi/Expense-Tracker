@@ -8,17 +8,17 @@ import AllExpenses from "./pages/AllExpenses";
 import Settings from "./pages/Settings";
 import Login from "./pages/Login";
 import SingUp from "./pages/SingUp";
-
+import { useState } from "react";
 function App() {
-  const user = true;
+  const [user, setUser] = useState(true);
 
   return (
     <BrowserRouter>
       {user ? (
         <div className="mycontainer">
-          <Nav />
+          <Nav setUser={setUser} />
           <div className="container__inner">
-            <Sticky />
+            <Sticky setUser={setUser} />
             <Routes>
               <Route
                 path="/home"
