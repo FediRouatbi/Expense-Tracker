@@ -11,6 +11,7 @@ import SingUp from "./pages/SingUp";
 import { useState } from "react";
 function App() {
   const [user, setUser] = useState(true);
+  setUser(true);
   return (
     <BrowserRouter>
       {user ? (
