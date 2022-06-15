@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AllExpenses from "./pages/AllExpenses";
 import Settings from "./pages/Settings";
 import Login from "./pages/Login";
+
 function App() {
   return (
     <BrowserRouter>
