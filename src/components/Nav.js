@@ -8,10 +8,10 @@ import logo from "../letter-m.png";
 import { IoMdSettings } from "react-icons/io";
 import { Link, useLocation } from "react-router-dom";
 
-const Nav = () => {
+const Nav = ({ setUser }) => {
   const [hidden, setHidden] = useState("");
   const { pathname } = useLocation();
-  console.log(pathname);
+
   return (
     <>
       <nav className={`nav ${hidden}`}>
@@ -55,9 +55,13 @@ const Nav = () => {
             <IoMdSettings className="navigation__item--logo" />
             <div className="navigation__item--text">settings</div>
           </Link>
-          <Link className="navigation__item" to={"/"}>
+          <Link
+            className="navigation__item"
+            to={"/"}
+            onClick={() => setUser(false)}
+          >
             <BiLogOut className="navigation__item--logo" />
-            <div className="navigation__item--text">logout</div>
+            <div className="navigation__item--text"> Sign out</div>
           </Link>
         </ul>
       </nav>
@@ -65,6 +69,7 @@ const Nav = () => {
         <AiOutlineMenu
           style={{ margin: "1em", cursor: "pointer" }}
           size={30}
+          className="absolute top-2  left-2  animate-wiggle "
           onClick={() => {
             setHidden("");
           }}

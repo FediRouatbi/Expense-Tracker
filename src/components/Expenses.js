@@ -4,7 +4,7 @@ import "./expenses.scss";
 import Item from "./Item";
 const Expenses = () => {
   return (
-    <div className="expenses">
+    <div className="expenses pt-16 overflow-hidden">
       <Title text="Recent" />
       <table className="table">
         <thead>

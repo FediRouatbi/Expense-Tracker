@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const Login = () => {
   return (
     <div className="login flex flex-col items-center justify-center ">
@@ -21,10 +21,14 @@ const Login = () => {
             className="py-1 px-2 outline-none text-center"
           />
         </div>
-        <div>
-          <button className="bg-blue-500 py-1 px-4 rounded-md text-white">
-            Sign In
-          </button>
+
+        <button className="bg-blue-500 py-1 px-4 rounded-md text-white">
+          Sign In
+        </button>
+        <div className="w-full text-right text-blue-500 ">
+          <Link to="/signup" className="w-full hover:underline">
+            Sign Up
+          </Link>
         </div>
       </form>
     </div>
