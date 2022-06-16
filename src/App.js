@@ -9,6 +9,7 @@ import Settings from "./pages/Settings";
 import Login from "./pages/Login";
 import SingUp from "./pages/SingUp";
 import { useState } from "react";
+
 function App() {
   const [user, setUser] = useState(true);
 
