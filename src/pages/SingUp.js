@@ -1,23 +1,31 @@
 import React, { useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { GetData } from "../context/AppContext";
 const SingUp = () => {
   const fullNameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { handelSubmit, signUpGoogle } = GetData();
+  const navTo = useNavigate();
+  const { handelSubmit, signUpGoogle, setCurrentUser, currentUser } = GetData();
+
   const signUp = (e) => {
     e.preventDefault();
     e.target.disabled = true;
 
     handelSubmit("signup", emailRef.current.value, passwordRef.current.value)
-      .then((resp) => console.log(resp.user))
+      .then((resp) => {
+        setCurrentUser(resp.user);
+        navTo("/");
+      })
       .catch((err) => console.log(err))
       .finally(() => (e.target.disabled = false));
   };
   const signUpWithGoogle = () => {
     signUpGoogle()
-      .then((resp) => console.log(resp.user))
+      .then((resp) => {
+        setCurrentUser(resp.user);
+        navTo("/");
+      })
       .catch((err) => console.log(err));
   };
 
@@ -26,7 +34,7 @@ const SingUp = () => {
       <div className="p-6">
         <header className="flex w-full justify-end">
           <Link
-            to="/"
+            to="/login"
             className="rounded-2xl border-b-2 border-b-gray-300 bg-white py-3 px-4 font-bold text-blue-500 ring-2 ring-gray-300 hover:bg-gray-200 active:translate-y-[0.125rem] active:border-b-gray-200"
           >
             LOG IN

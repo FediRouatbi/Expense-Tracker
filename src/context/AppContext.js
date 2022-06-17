@@ -11,13 +11,14 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 const Context = createContext();
-
 export const GetData = () => useContext(Context);
 
 const AppContext = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
+  console.log(currentUser);
   const googleProvider = new GoogleAuthProvider();
   const auth = getAuth();
+
   const collectionRef = collection(database, "users");
   const signUpGoogle = () => {
     return signInWithPopup(auth, googleProvider);
@@ -28,9 +29,21 @@ const AppContext = ({ children }) => {
     if (type === "signin")
       return signInWithEmailAndPassword(auth, email, password);
   };
-  console.log(currentUser);
+  const signOutUser = () => {
+    signOut(auth);
+  };
+
   return (
-    <Context.Provider value={{ handelSubmit, signUpGoogle, currentUser }}>
+    <Context.Provider
+      value={{
+        handelSubmit,
+        signUpGoogle,
+        setCurrentUser,
+        signOutUser,
+        auth,
+        currentUser,
+      }}
+    >
       {children}
     </Context.Provider>
   );

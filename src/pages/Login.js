@@ -1,16 +1,20 @@
 import React, { useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { GetData } from "../context/AppContext";
 const Login = () => {
+  const navTo = useNavigate();
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { handelSubmit } = GetData();
+  const { handelSubmit, setCurrentUser, currentUser } = GetData();
+  console.log(currentUser);
   const signIn = (e) => {
     e.preventDefault();
     e.target.disabled = true;
-
     handelSubmit("signin", emailRef.current.value, passwordRef.current.value)
-      .then((resp) => console.log(resp.user))
+      .then((resp) => {
+        setCurrentUser(resp.user);
+        navTo("/");
+      })
       .catch((err) => console.log(err))
       .finally(() => (e.target.disabled = false));
   };
