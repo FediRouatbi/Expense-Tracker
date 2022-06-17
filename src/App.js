@@ -7,7 +7,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AllExpenses from "./pages/AllExpenses";
 import Settings from "./pages/Settings";
 import Login from "./pages/Login";
-import SingUp from "./pages/SingUp";
+import SignUp from "./pages/SignUp";
 import { useState } from "react";
 
 function App() {
@@ -38,7 +38,7 @@ function App() {
       ) : (
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/signup" element={<SingUp />} />
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
       )}
     </BrowserRouter>
