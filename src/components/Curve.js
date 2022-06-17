@@ -37,16 +37,17 @@ const Curve = () => {
   ];
 
   return (
-    <div className="curve">
-      
-      <XYPlot width={700} height={200}>
-        <VerticalGridLines />
-        <HorizontalGridLines />
-        <XAxis />
-        <YAxis />
-        <LineSeries data={data} />
-        <LineSeries data={data2} />
-      </XYPlot>
+    <div className="curve ">
+      <div className="mx-auto w-[880px]">
+        <XYPlot width={880} height={200}>
+          <VerticalGridLines />
+          <HorizontalGridLines />
+          <XAxis />
+          <YAxis />
+          <LineSeries data={data} />
+          <LineSeries data={data2} />
+        </XYPlot>
+      </div>
     </div>
   );
 };

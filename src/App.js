@@ -9,6 +9,7 @@ import Settings from "./pages/Settings";
 import Login from "./pages/Login";
 import SingUp from "./pages/SingUp";
 import { useState } from "react";
+import ForgotPassword from "./pages/ForgotPassword";
 
 function App() {
   const [user, setUser] = useState(true);
@@ -39,6 +40,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/signup" element={<SingUp />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
         </Routes>
       )}
     </BrowserRouter>

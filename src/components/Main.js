@@ -2,13 +2,13 @@ import React from "react";
 import "./main.scss";
 import Spendings from "./Spendings";
 import Curve from "./Curve";
-import Expenses from "./Expenses";
+import Table from "./Table";
 const Main = () => {
   return (
-    <main className="main p-4 pt-16">
+    <main className="main p-4 pt-16 h-screen">
       <Spendings />
       <Curve />
-      <Expenses />
+      <Table  allExpenses={false}/>
     </main>
   );
 };
