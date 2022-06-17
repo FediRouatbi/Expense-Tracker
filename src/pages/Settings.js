@@ -1,11 +1,11 @@
 import React from "react";
-import "./settings.scss";
-
+import { GetData } from "../context/AppContext";
 const Settings = () => {
+  const { handelSubmit } = GetData();
+  console.log(handelSubmit);
   return (
-    <div className="settings mx-auto">
+    <div className="settings mx-auto p-4 pt-16 h-screen w-4/5 ">
       <h1 className="text-xl my-4">Settings</h1>
-
       <div className="flex flex-col justify-items-end">
         <ul className="flex justify-between items-center my-2">
           <li className="">Currency</li>

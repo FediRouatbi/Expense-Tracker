@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./alllexpenses.scss";
+
 import { MdLibraryAdd, MdSearch } from "react-icons/md";
 
 import Table from "../components/Table";

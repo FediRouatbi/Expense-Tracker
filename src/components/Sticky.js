@@ -3,7 +3,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import img from "../f.png";
 import "./sticky.scss";
 import { Link } from "react-router-dom";
-const Sticky = ({ setUser }) => {
+const Sticky = () => {
   const [open, setOpen] = useState(false);
   const toogle = () => {
     setOpen((prev) => !prev);
@@ -58,7 +58,7 @@ const Sticky = ({ setUser }) => {
             <Link
               onClick={() => {
                 toogle();
-                setUser(false);
+               
               }}
               to="/"
               className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"

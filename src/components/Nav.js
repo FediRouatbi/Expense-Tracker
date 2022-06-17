@@ -8,7 +8,7 @@ import logo from "../letter-m.png";
 import { IoMdSettings } from "react-icons/io";
 import { Link, useLocation } from "react-router-dom";
 
-const Nav = ({ setUser }) => {
+const Nav = () => {
   const [hidden, setHidden] = useState("");
   const { pathname } = useLocation();
 
@@ -55,11 +55,7 @@ const Nav = ({ setUser }) => {
             <IoMdSettings className="navigation__item--logo" />
             <div className="navigation__item--text">settings</div>
           </Link>
-          <Link
-            className="navigation__item"
-            to={"/"}
-            onClick={() => setUser(false)}
-          >
+          <Link className="navigation__item" to={"/"}>
             <BiLogOut className="navigation__item--logo" />
             <div className="navigation__item--text"> Sign out</div>
           </Link>
