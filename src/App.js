@@ -1,47 +1,43 @@
 import "./App.css";
-import Nav from "./components/Nav";
-import Main from "./components/Main";
-import Aside from "./components/Aside";
-import Sticky from "./components/Sticky";
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AllExpenses from "./pages/AllExpenses";
-import Settings from "./pages/Settings";
+
 import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
+import SingUp from "./pages/SignUp";
 import { useState } from "react";
+import ForgotPassword from "./pages/ForgotPassword";
+import AppContext from "./context/AppContext";
+import Dashboard from "./pages/Dashboard";
+import Settings from "./pages/Settings";
+import AllExpenses from "./pages/AllExpenses";
+import Sticky from "./components/Sticky";
+import Nav from "./components/Nav";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
-  const [user, setUser] = useState(true);
-
   return (
-    <BrowserRouter>
-      {user ? (
-        <div className="mycontainer">
-          <Nav setUser={setUser} />
-          <div className="container__inner">
-            <Sticky setUser={setUser} />
-            <Routes>
-              <Route
-                path="/home"
-                element={
-                  <div className="myflex">
-                    <Main />
-                    <Aside />
-                  </div>
-                }
-              />
+    <AppContext>
+      <BrowserRouter>
+        <div className="flex">
+          <Nav />
+          <Sticky />
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SingUp />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/" element={<PrivateRoute />}>
+              <Route path="/" element={<Dashboard />} />
+            </Route>
+            <Route path="/settings" element={<PrivateRoute />}>
+              <Route path="/settings" element={<Settings />} />
+            </Route>
+            <Route path="/expenses" element={<PrivateRoute />}>
               <Route path="/expenses" element={<AllExpenses />} />
-              <Route path="/Settings" element={<Settings />} />
-            </Routes>
-          </div>
+            </Route>
+          </Routes>
         </div>
-      ) : (
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-        </Routes>
-      )}
-    </BrowserRouter>
+      </BrowserRouter>
+    </AppContext>
   );
 }
 
