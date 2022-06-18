@@ -5,8 +5,7 @@ const Login = () => {
   const navTo = useNavigate();
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { handelSubmit, setCurrentUser, currentUser } = GetData();
-  console.log(currentUser);
+  const { handelSubmit, setCurrentUser } = GetData();
   const signIn = (e) => {
     e.preventDefault();
     e.target.disabled = true;

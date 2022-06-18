@@ -3,7 +3,7 @@ import { GetData } from "../context/AppContext";
 
 const Settings = () => {
   const { handelSubmit } = GetData();
-  console.log(handelSubmit);
+
   return (
     <div className="  p-4 pt-16 h-screen w-3/5 ">
       <h1 className="text-xl my-4">Settings</h1>
@@ -78,6 +78,8 @@ const Settings = () => {
               <label htmlFor="newsletter">Sign up for weekly newsletter</label>
               <input type="checkbox" className="ml-2" />
             </div>
+            <input id="file-input" type="file" />
+            <button className="bg-green-300">save</button>
           </form>
         </ul>
 
