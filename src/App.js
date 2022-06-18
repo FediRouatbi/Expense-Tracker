@@ -3,7 +3,7 @@ import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Login from "./pages/Login";
-import SingUp from "./pages/SingUp";
+import SingUp from "./pages/SignUp";
 import { useState } from "react";
 import ForgotPassword from "./pages/ForgotPassword";
 import AppContext from "./context/AppContext";
