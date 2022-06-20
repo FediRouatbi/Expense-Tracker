@@ -1,9 +1,51 @@
-import React from "react";
+import React, { useRef } from "react";
 import { GetData } from "../context/AppContext";
-
+import { ToastContainer, toast } from "react-toastify";
 const Settings = () => {
-  const { handelSubmit } = GetData();
+  const { deletAccount, updateE, updateP, currentUser } = GetData();
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const animateMsg = {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  };
 
+  const update = (e) => {
+    e.preventDefault();
+
+    if (emailRef.current.value) {
+      e.target.disabled = true;
+      updateE(emailRef.current.value)
+        .then(() => toast.success("Email change successfully", animateMsg))
+        .catch((err) => toast.error(err.message, animateMsg));
+      emailRef.current.value = "";
+    }
+    if (passwordRef.current.value) {
+      e.target.disabled = true;
+      updateP(passwordRef.current.value)
+        .then(() => toast.success("Password change successfully", animateMsg))
+        .catch((err) => toast.error(err.message, animateMsg));
+      passwordRef.current.value = "";
+    }
+    e.target.disabled = false;
+  };
+
+  const deleteAcc = () => {
+    const answer = window.confirm(
+      "are you sure you want to delete your account ? "
+    );
+    if (answer)
+      deletAccount()
+        .then(() => {
+          toast.success("done", animateMsg);
+        })
+        .catch((err) => toast.error(err.message, animateMsg));
+  };
   return (
     <div className="  p-4 pt-16 h-screen w-3/5 ">
       <h1 className="text-xl my-4">Settings</h1>
@@ -37,28 +79,6 @@ const Settings = () => {
             <option defaultValue>Default</option>
           </select>
         </ul>
-        <ul className="flex justify-between my-2">
-          <li>Security</li>
-          <ul className="text-right">
-            <li>
-              <a href="//">Set Passcode</a>
-            </li>
-            <ul className="hidden">
-              <li>
-                <a href="//">Set Passcode</a>
-              </li>
-              <li>
-                <a href="//">Require Passcode to complete Payment</a>
-              </li>
-            </ul>
-            <li>
-              <a href="//">Change Password</a>
-            </li>
-            <li>
-              <a href="//">Two Factor Authentication</a>
-            </li>
-          </ul>
-        </ul>
 
         <ul className="flex justify-between items-start">
           <li>Notification</li>
@@ -79,20 +99,51 @@ const Settings = () => {
               <label htmlFor="newsletter">Sign up for weekly newsletter</label>
               <input type="checkbox" className="ml-2" />
             </div>
-            <input id="file-input" type="file" />
-            <button className="bg-green-300">save</button>
           </form>
         </ul>
 
-        <ul className="my-10">
-          <li>
-            <a href="//">About</a>
-          </li>
-          <li>
-            <a href="//">Help</a>
-          </li>
+        <ul className="flex justify-between my-2 pt-6">
+          <li>Security</li>
+          <ul className="text-right w-3/6 ">
+            <li className="p-2 flex justify-between items-center ">
+              <span>Change Email</span>
+              <input
+                placeholder={currentUser.email}
+                type="text"
+                ref={emailRef}
+                className="border-2  rounded-md border-gray-800 p-2"
+              />
+            </li>
+            <li className=" p-2 flex justify-between items-center">
+              <span>Change Password</span>
+              <input
+                ref={passwordRef}
+                type="text"
+                className="border-2  rounded-md border-gray-800 p-2 "
+              />
+            </li>
+
+            <li className="p-2 flex justify-end  ">
+              <button
+                onClick={(e) => update(e)}
+                type="text"
+                className="disabled:bg-red-300 bg-gray-500 rounded-md text-white hover:bg-gray-600 p-2 shadow-xl active:shadow-md"
+              >
+                change
+              </button>
+            </li>
+          </ul>
         </ul>
+        <li className="flex ">
+          <button
+            onClick={deleteAcc}
+            className="shadow-lg text-white rounded-lg bg-red-400 p-3 hover:bg-red-600"
+          >
+            Delete Account
+          </button>
+        </li>
       </div>
+      <ToastContainer />
     </div>
   );
 };

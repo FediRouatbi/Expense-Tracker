@@ -7,7 +7,7 @@ import { GetData } from "../context/AppContext";
 const Sticky = () => {
   const { currentUser, signOutUser } = GetData();
   const [open, setOpen] = useState(false);
-
+  console.log(currentUser);
   const toogle = () => {
     setOpen((prev) => !prev);
   };

@@ -12,13 +12,7 @@ const SingUp = () => {
   const passwordRef = useRef();
   const ConfirmPasswordRef = useRef();
   const navTo = useNavigate();
-  const {
-    handelSubmit,
-    signUpGoogle,
-    setCurrentUser,
-    putUserName,
-    currentUser,
-  } = GetData();
+  const { handelSubmit, signUpGoogle, setCurrentUser, putUserName } = GetData();
   const animateMsg = {
     position: "bottom-center",
     autoClose: 5000,

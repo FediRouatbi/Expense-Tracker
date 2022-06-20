@@ -12,6 +12,9 @@ import {
   onAuthStateChanged,
   updateProfile,
   sendPasswordResetEmail,
+  deleteUser,
+  updateEmail,
+  updatePassword,
 } from "firebase/auth";
 const Context = createContext();
 export const GetData = () => useContext(Context);
@@ -20,21 +23,27 @@ const AppContext = ({ children }) => {
   const auth = getAuth();
   const [allExpense, setAllExpense] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
+  const googleProvider = new GoogleAuthProvider();
+  const collectionRef = collection(database, "users");
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => setCurrentUser(user));
+  }, []);
+
   const addExpense = (data) => {
     setAllExpense((prev) => [...prev, data]);
   };
   const deleteExpense = (id) => {
     setAllExpense((prev) => prev.filter((elm) => elm.id != id));
   };
-  const googleProvider = new GoogleAuthProvider();
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => setCurrentUser(user));
-  }, []);
+  const updateE = (email) => {
+    return updateEmail(currentUser, email);
+  };
+  const updateP = (password) => {
+    return updatePassword(currentUser, password);
+  };
   const putUserName = (name) => {
     return updateProfile(auth.currentUser, { displayName: name });
   };
-  const collectionRef = collection(database, "users");
   const signUpGoogle = () => {
     return signInWithPopup(auth, googleProvider);
   };
@@ -47,6 +56,10 @@ const AppContext = ({ children }) => {
   const forgetPassword = (email) => {
     return sendPasswordResetEmail(auth, email);
   };
+  const deletAccount = () => {
+    return deleteUser(auth.currentUser);
+  };
+
   const signOutUser = () => {
     signOut(auth);
   };
@@ -64,6 +77,9 @@ const AppContext = ({ children }) => {
         allExpense,
         deleteExpense,
         forgetPassword,
+        deletAccount,
+        updateE,
+        updateP,
       }}
     >
       {children}
