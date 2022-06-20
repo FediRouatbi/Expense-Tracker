@@ -11,11 +11,13 @@ import {
   signInWithPopup,
   onAuthStateChanged,
   updateProfile,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 const Context = createContext();
 export const GetData = () => useContext(Context);
 
 const AppContext = ({ children }) => {
+  const auth = getAuth();
   const [allExpense, setAllExpense] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
   const addExpense = (data) => {
@@ -25,7 +27,7 @@ const AppContext = ({ children }) => {
     setAllExpense((prev) => prev.filter((elm) => elm.id != id));
   };
   const googleProvider = new GoogleAuthProvider();
-  const auth = getAuth();
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => setCurrentUser(user));
   }, []);
@@ -41,6 +43,9 @@ const AppContext = ({ children }) => {
       return createUserWithEmailAndPassword(auth, email, password);
     if (type === "signin")
       return signInWithEmailAndPassword(auth, email, password);
+  };
+  const forgetPassword = (email) => {
+    return sendPasswordResetEmail(auth, email);
   };
   const signOutUser = () => {
     signOut(auth);
@@ -58,6 +63,7 @@ const AppContext = ({ children }) => {
         addExpense,
         allExpense,
         deleteExpense,
+        forgetPassword,
       }}
     >
       {children}

@@ -2,6 +2,10 @@ import React, { useRef } from "react";
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GetData } from "../context/AppContext";
+import { ToastContainer, toast } from "react-toastify";
+
+import { FcGoogle } from "react-icons/fc";
+
 const SingUp = () => {
   const fullNameRef = useRef();
   const emailRef = useRef();
@@ -15,26 +19,33 @@ const SingUp = () => {
     putUserName,
     currentUser,
   } = GetData();
-
+  const animateMsg = {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  };
   const signUp = async (e) => {
     e.preventDefault();
+    e.target.disabled = true;
     try {
-      e.target.disabled = true;
-
       const data = await handelSubmit(
         "signup",
         emailRef.current.value,
         passwordRef.current.value
       );
-      putUserName(fullNameRef.current.value);
-      setCurrentUser({
-        ...data.user,
-        displayName: fullNameRef.current.value,
-      });
+      await putUserName(fullNameRef.current.value).then();
+
+      setCurrentUser(data.user);
+
       navTo("/");
-      e.target.disabled = false;
     } catch (err) {
-      console.log(err);
+      toast.error(`${err.message}`, animateMsg);
+    } finally {
+      e.target.disabled = false;
     }
   };
 
@@ -44,11 +55,12 @@ const SingUp = () => {
         setCurrentUser(resp.user);
         navTo("/");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => toast.error(`${err.message}`, animateMsg));
   };
 
   return (
-    <main className="relative min-h-screen w-full bg-white">
+    <main className="overflow-hidden relative min-h-screen w-full bg-white">
+      <ToastContainer />
       <div className="p-6">
         <header className="flex w-full justify-end">
           <Link
@@ -109,12 +121,13 @@ const SingUp = () => {
             <div className="font-semibold text-gray-400">OR</div>
             <hr className="w-full border border-gray-300" />
           </div>
-          <div>
+          <div className="flex justify-center">
             <a
               onClick={() => signUpWithGoogle()}
               href="#"
-              className="rounded-2xl border-b-2 border-b-gray-300 bg-white py-2.5 px-4 font-bold text-blue-500 ring-2 ring-gray-300 hover:bg-gray-200 active:translate-y-[0.125rem] active:border-b-gray-200"
+              className="flex w-2/5 items-center justify-center gap-2 rounded-2xl border-b-2 border-b-gray-300 bg-white py-2.5 px-4 font-bold text-blue-500 ring-2 ring-gray-300 hover:bg-gray-200 active:translate-y-[0.125rem] active:border-b-gray-200"
             >
+              <FcGoogle size={20} />
               GOOGLE
             </a>
           </div>

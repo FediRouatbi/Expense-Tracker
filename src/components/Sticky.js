@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import "./sticky.scss";
 import { Link } from "react-router-dom";
 import { GetData } from "../context/AppContext";
+
 const Sticky = () => {
+  const { currentUser, signOutUser } = GetData();
   const [open, setOpen] = useState(false);
+
   const toogle = () => {
     setOpen((prev) => !prev);
   };
 
-  const { currentUser, signOutUser } = GetData();
-  console.log(currentUser);
   return (
     currentUser && (
       <div className="absolute top-4 right-6">

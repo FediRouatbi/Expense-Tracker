@@ -59,6 +59,7 @@ const Settings = () => {
             </li>
           </ul>
         </ul>
+
         <ul className="flex justify-between items-start">
           <li>Notification</li>
           <form className="">
