@@ -38,8 +38,8 @@ const Curve = () => {
 
   return (
     <div className="curve ">
-      <div className="mx-auto ">
-        <XYPlot width={500} height={200}>
+      <div className="mx-auto w-[700px]">
+        <XYPlot width={700} height={200}>
           <VerticalGridLines />
           <HorizontalGridLines />
           <XAxis />
