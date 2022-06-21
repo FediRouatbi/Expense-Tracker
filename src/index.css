@@ -23,7 +23,7 @@ body {
   height: 100vh;
 }
 
-select{
+select {
   outline: none;
   border: none;
   cursor: pointer;

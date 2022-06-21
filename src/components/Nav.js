@@ -13,7 +13,7 @@ const Nav = () => {
   const navTo = useNavigate();
   const [hidden, setHidden] = useState("");
   const { pathname } = useLocation();
-  const { currentUser, signOutUser, setCurrentUser } = GetData();
+  const { currentUser, signOutUser } = GetData();
   return (
     currentUser && (
       <>
@@ -62,7 +62,6 @@ const Nav = () => {
               className="navigation__item"
               onClick={() => {
                 signOutUser();
-                setCurrentUser(null);
                 navTo("/login");
               }}
             >

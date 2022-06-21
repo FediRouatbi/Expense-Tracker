@@ -1,12 +1,13 @@
 import React, { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GetData } from "../context/AppContext";
+import { ToastContainer, toast } from "react-toastify";
+
 const Login = () => {
   const navTo = useNavigate();
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { handelSubmit, setCurrentUser, currentUser } = GetData();
-  console.log(currentUser);
+  const { handelSubmit, setCurrentUser } = GetData();
   const signIn = (e) => {
     e.preventDefault();
     e.target.disabled = true;
@@ -15,7 +16,17 @@ const Login = () => {
         setCurrentUser(resp.user);
         navTo("/");
       })
-      .catch((err) => console.log(err))
+      .catch((err) =>
+        toast.error(`${err.message}`, {
+          position: "bottom-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        })
+      )
       .finally(() => (e.target.disabled = false));
   };
   return (
@@ -64,6 +75,7 @@ const Login = () => {
           </div>
         </section>
       </div>
+      <ToastContainer />
     </main>
   );
 };

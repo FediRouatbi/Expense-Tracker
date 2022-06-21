@@ -1,36 +1,60 @@
 import React, { useRef } from "react";
+import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GetData } from "../context/AppContext";
+import { ToastContainer, toast } from "react-toastify";
+
+import { FcGoogle } from "react-icons/fc";
+
 const SingUp = () => {
   const fullNameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
+  const ConfirmPasswordRef = useRef();
   const navTo = useNavigate();
-  const { handelSubmit, signUpGoogle, setCurrentUser, currentUser } = GetData();
-
-  const signUp = (e) => {
+  const { handelSubmit, signUpGoogle, setCurrentUser, putUserName } = GetData();
+  const animateMsg = {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  };
+  const signUp = async (e) => {
     e.preventDefault();
     e.target.disabled = true;
+    try {
+      const data = await handelSubmit(
+        "signup",
+        emailRef.current.value,
+        passwordRef.current.value
+      );
+      await putUserName(fullNameRef.current.value).then();
 
-    handelSubmit("signup", emailRef.current.value, passwordRef.current.value)
-      .then((resp) => {
-        setCurrentUser(resp.user);
-        navTo("/");
-      })
-      .catch((err) => console.log(err))
-      .finally(() => (e.target.disabled = false));
+      setCurrentUser(data.user);
+
+      navTo("/");
+    } catch (err) {
+      toast.error(`${err.message}`, animateMsg);
+    } finally {
+      e.target.disabled = false;
+    }
   };
+
   const signUpWithGoogle = () => {
     signUpGoogle()
       .then((resp) => {
         setCurrentUser(resp.user);
         navTo("/");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => toast.error(`${err.message}`, animateMsg));
   };
 
   return (
-    <main className="relative min-h-screen w-full bg-white">
+    <main className="overflow-hidden relative min-h-screen w-full bg-white">
+      <ToastContainer />
       <div className="p-6">
         <header className="flex w-full justify-end">
           <Link
@@ -68,8 +92,18 @@ const SingUp = () => {
                 className="my-3 w-full border-none bg-transparent outline-none"
               />
             </div>
+            <div className="flex w-[330px] items-center space-x-2 rounded-2xl bg-gray-50 px-4 ring-2 ring-gray-200 focus-within:ring-blue-400">
+              <input
+                ref={ConfirmPasswordRef}
+                type="text"
+                placeholder="Confirm Password"
+                className="my-3 w-full border-none bg-transparent outline-none"
+              />
+            </div>
             <button
-              onClick={(e) => signUp(e)}
+              onClick={(e) => {
+                signUp(e);
+              }}
               className="disabled:bg-red-400 w-full rounded-2xl border-b-4 border-b-blue-600 bg-blue-500 py-3 font-bold text-white hover:bg-blue-400 active:translate-y-[0.125rem] active:border-b-blue-400"
             >
               SIGN UP
@@ -81,12 +115,13 @@ const SingUp = () => {
             <div className="font-semibold text-gray-400">OR</div>
             <hr className="w-full border border-gray-300" />
           </div>
-          <div>
+          <div className="flex justify-center">
             <a
               onClick={() => signUpWithGoogle()}
               href="#"
-              className="rounded-2xl border-b-2 border-b-gray-300 bg-white py-2.5 px-4 font-bold text-blue-500 ring-2 ring-gray-300 hover:bg-gray-200 active:translate-y-[0.125rem] active:border-b-gray-200"
+              className="flex w-2/5 items-center justify-center gap-2 rounded-2xl border-b-2 border-b-gray-300 bg-white py-2.5 px-4 font-bold text-blue-500 ring-2 ring-gray-300 hover:bg-gray-200 active:translate-y-[0.125rem] active:border-b-gray-200"
             >
+              <FcGoogle size={20} />
               GOOGLE
             </a>
           </div>

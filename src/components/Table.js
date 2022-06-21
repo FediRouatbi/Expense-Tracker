@@ -1,8 +1,12 @@
 import React from "react";
 import { MdDelete } from "react-icons/md";
+import { GetData } from "../context/AppContext";
 const Table = ({ allExpenses }) => {
   const number = allExpenses ? 9 : 3;
-  const arrayOfData = new Array(12).fill(0);
+  const { allExpense, deleteExpense } = GetData();
+  const deleteE = (e) => {
+    deleteExpense(e.currentTarget.getAttribute("data-id"));
+  };
   return (
     <div className="w-full mx-auto">
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -71,7 +75,7 @@ const Table = ({ allExpenses }) => {
             </tr>
           </thead>
           <tbody>
-            {arrayOfData.slice(0, number).map((_, i) => (
+            {allExpense?.slice(0, number).map((elm, i) => (
               <tr
                 key={i}
                 className="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600"
@@ -90,11 +94,11 @@ const Table = ({ allExpenses }) => {
                   scope="row"
                   className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
                 >
-                  Magic Mouse 2
+                  {elm.name}
                 </th>
-                <td className="px-6 py-4">Black</td>
-                <td className="px-6 py-4">Accessories</td>
-                <td className="px-6 py-4">$99</td>
+                <td className="px-6 py-4">{elm.color}</td>
+                <td className="px-6 py-4">{elm.category}</td>
+                <td className="px-6 py-4">${elm.price}</td>
                 {allExpenses && (
                   <>
                     <td className="px-6 py-4 text-right">
@@ -110,7 +114,13 @@ const Table = ({ allExpenses }) => {
                         href="#"
                         className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                       >
-                        <MdDelete className="icon" size={20} color="#ff8787" />
+                        <MdDelete
+                          onClick={(e) => deleteE(e)}
+                          className="icon"
+                          size={20}
+                          color="#ff8787"
+                          data-id={elm.id}
+                        />
                       </a>
                     </td>
                   </>
