@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
+import user from "../data/user.jpg";
 import "./sticky.scss";
 import { Link } from "react-router-dom";
 import { GetData } from "../context/AppContext";
@@ -21,7 +22,7 @@ const Sticky = () => {
           onClick={() => toogle()}
         >
           <img
-            src={currentUser?.photoURL}
+            src={currentUser?.photoURL || user}
             alt=""
             className="w-8 h-8 rounded-full"
           />
