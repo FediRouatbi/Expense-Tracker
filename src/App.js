@@ -4,7 +4,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Login from "./pages/Login";
 import SingUp from "./pages/SignUp";
-import { useState } from "react";
 import ForgotPassword from "./pages/ForgotPassword";
 import AppContext from "./context/AppContext";
 import Dashboard from "./pages/Dashboard";
@@ -22,9 +21,6 @@ function App() {
           <Nav />
           <Sticky />
           <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SingUp />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/" element={<PrivateRoute />}>
               <Route path="/" element={<Dashboard />} />
             </Route>
@@ -34,6 +30,9 @@ function App() {
             <Route path="/expenses" element={<PrivateRoute />}>
               <Route path="/expenses" element={<AllExpenses />} />
             </Route>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SingUp />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
           </Routes>
         </div>
       </BrowserRouter>

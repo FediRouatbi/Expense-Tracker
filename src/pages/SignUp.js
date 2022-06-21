@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GetData } from "../context/AppContext";
 import { ToastContainer, toast } from "react-toastify";
@@ -12,13 +11,7 @@ const SingUp = () => {
   const passwordRef = useRef();
   const ConfirmPasswordRef = useRef();
   const navTo = useNavigate();
-  const {
-    handelSubmit,
-    signUpGoogle,
-    setCurrentUser,
-    putUserName,
-    readExpenses,
-  } = GetData();
+  const { handelSubmit, signUpGoogle, setCurrentUser, putUserName } = GetData();
   const animateMsg = {
     position: "bottom-center",
     autoClose: 5000,
@@ -74,7 +67,7 @@ const SingUp = () => {
         </header>
 
         <section className="absolute top-1/2 left-1/2 mx-auto max-w-sm -translate-x-1/2 -translate-y-1/2 transform space-y-4 text-center">
-          <div className="space-y-4">
+          <form className="space-y-4">
             <header className="mb-3 text-2xl font-bold"> Sign up</header>
             <div className="w-full rounded-2xl bg-gray-50 px-4 ring-2 ring-gray-200 focus-within:ring-blue-400">
               <input
@@ -116,7 +109,7 @@ const SingUp = () => {
             >
               SIGN UP
             </button>
-          </div>
+          </form>
 
           <div className="flex items-center space-x-4">
             <hr className="w-full border border-gray-300" />

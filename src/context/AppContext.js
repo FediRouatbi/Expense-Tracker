@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useContext, createContext } from "react";
 import { db } from "./firebaseConfig.js";
 import { ref, set, onValue } from "firebase/database";
-
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -23,11 +22,16 @@ export const GetData = () => useContext(Context);
 const AppContext = ({ children }) => {
   const auth = getAuth();
   const [allExpense, setAllExpense] = useState([]);
-  const [currentUser, setCurrentUser] = useState("");
+  const [currentUser, setCurrentUser] = useState(false);
   const googleProvider = new GoogleAuthProvider();
-
+  const setData = () => {
+    const data = window.localStorage.getItem("user");
+    setCurrentUser(JSON.parse(data));
+  };
+  window.addEventListener("beforeunload", setData);
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
+      window.localStorage.setItem("user", JSON.stringify(user));
       setCurrentUser(user);
       setAllExpense([]);
       readExpenses(user);
@@ -100,6 +104,7 @@ const AppContext = ({ children }) => {
         updateP,
         whriteExpenses,
         readExpenses,
+        currentUser,
       }}
     >
       {children}
