@@ -1,7 +1,27 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import { GetData } from "../context/AppContext";
 const ForgotPassword = () => {
+  const { forgetPassword } = GetData();
   const emailRef = useRef();
+  const animateMsg = {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  };
+  const reset = (e) => {
+    e.preventDefault();
+    e.target.disabled = true;
+    forgetPassword(emailRef.current.value)
+      .then(() => toast.success(`Password reset email sent!`, animateMsg))
+      .catch((err) => toast.error(`${err.message}`, animateMsg))
+      .finally(() => (e.target.disabled = false));
+  };
   return (
     <main className="relative min-h-screen w-full bg-white">
       <div className="p-6">
@@ -34,11 +54,15 @@ const ForgotPassword = () => {
                 className="my-3 w-full border-none bg-transparent outline-none"
               />
             </div>
-            <button className="w-full rounded-2xl border-b-4 border-b-blue-600 bg-blue-500 py-3 font-bold text-white hover:bg-blue-400 active:translate-y-[0.125rem] active:border-b-blue-400">
+            <button
+              onClick={(e) => reset(e)}
+              className="w-full rounded-2xl border-b-4 border-b-blue-600 bg-blue-500 py-3 font-bold text-white hover:bg-blue-400 active:translate-y-[0.125rem] active:border-b-blue-400 disabled:bg-red-400"
+            >
               Reset Password
             </button>
           </div>
         </section>
+        <ToastContainer />
       </div>
     </main>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useContext, createContext } from "react";
 import { app, database } from "./firebaseConfig.js";
 import { collection, addDoc } from "firebase/firestore";
@@ -9,17 +9,41 @@ import {
   signOut,
   GoogleAuthProvider,
   signInWithPopup,
+  onAuthStateChanged,
+  updateProfile,
+  sendPasswordResetEmail,
+  deleteUser,
+  updateEmail,
+  updatePassword,
 } from "firebase/auth";
 const Context = createContext();
 export const GetData = () => useContext(Context);
 
 const AppContext = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
-  console.log(currentUser);
-  const googleProvider = new GoogleAuthProvider();
   const auth = getAuth();
-
+  const [allExpense, setAllExpense] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
+  const googleProvider = new GoogleAuthProvider();
   const collectionRef = collection(database, "users");
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => setCurrentUser(user));
+  }, []);
+
+  const addExpense = (data) => {
+    setAllExpense((prev) => [...prev, data]);
+  };
+  const deleteExpense = (id) => {
+    setAllExpense((prev) => prev.filter((elm) => elm.id != id));
+  };
+  const updateE = (email) => {
+    return updateEmail(currentUser, email);
+  };
+  const updateP = (password) => {
+    return updatePassword(currentUser, password);
+  };
+  const putUserName = (name) => {
+    return updateProfile(auth.currentUser, { displayName: name });
+  };
   const signUpGoogle = () => {
     return signInWithPopup(auth, googleProvider);
   };
@@ -29,6 +53,13 @@ const AppContext = ({ children }) => {
     if (type === "signin")
       return signInWithEmailAndPassword(auth, email, password);
   };
+  const forgetPassword = (email) => {
+    return sendPasswordResetEmail(auth, email);
+  };
+  const deletAccount = () => {
+    return deleteUser(auth.currentUser);
+  };
+
   const signOutUser = () => {
     signOut(auth);
   };
@@ -40,8 +71,15 @@ const AppContext = ({ children }) => {
         signUpGoogle,
         setCurrentUser,
         signOutUser,
-        auth,
         currentUser,
+        putUserName,
+        addExpense,
+        allExpense,
+        deleteExpense,
+        forgetPassword,
+        deletAccount,
+        updateE,
+        updateP,
       }}
     >
       {children}

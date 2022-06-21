@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IoIosArrowDown } from "react-icons/io";
-import img from "../f.png";
 import "./sticky.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { GetData } from "../context/AppContext";
+
 const Sticky = () => {
-  const navTo = useNavigate();
+  const { currentUser, signOutUser } = GetData();
   const [open, setOpen] = useState(false);
+  console.log(currentUser);
   const toogle = () => {
     setOpen((prev) => !prev);
   };
-  const { currentUser, signOutUser, setCurrentUser } = GetData();
+
   return (
     currentUser && (
       <div className="absolute top-4 right-6">
@@ -19,8 +20,12 @@ const Sticky = () => {
           type="button"
           onClick={() => toogle()}
         >
-          <img src={img} alt="" className="w-8 h-8 rounded-full" />
-          <div> Rouatbi Fedi</div>
+          <img
+            src={currentUser?.photoURL}
+            alt=""
+            className="w-8 h-8 rounded-full"
+          />
+          <div> {currentUser?.displayName}</div>
 
           <IoIosArrowDown />
         </button>
@@ -61,9 +66,8 @@ const Sticky = () => {
             <li>
               <a
                 onClick={() => {
+                  toogle();
                   signOutUser();
-                  setCurrentUser(null);
-                  navTo("/login");
                 }}
                 className=" cursor-pointer block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >
