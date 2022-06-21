@@ -32,9 +32,9 @@ const Nav = () => {
           <ul className="navigation">
             <Link
               className={`navigation__item ${
-                pathname === "/" ? "activelink" : ""
+                pathname === "/Expense-Tracker" ? "activelink" : ""
               }`}
-              to={"/"}
+              to={"/Expense-Tracker"}
             >
               <FaHome className="navigation__item--logo" />
 
