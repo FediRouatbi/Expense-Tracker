@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getDatabase } from "firebase/database";
 const firebaseConfig = {
   apiKey: "AIzaSyBK6lgLD8e91RHPinVxAEbScbd4EgtFQLo",
   authDomain: "expense-tracker-193b1.firebaseapp.com",
@@ -10,3 +11,4 @@ const firebaseConfig = {
 };
 export const app = initializeApp(firebaseConfig);
 export const database = getFirestore(app);
+export const db = getDatabase();

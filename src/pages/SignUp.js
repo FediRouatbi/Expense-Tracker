@@ -12,7 +12,13 @@ const SingUp = () => {
   const passwordRef = useRef();
   const ConfirmPasswordRef = useRef();
   const navTo = useNavigate();
-  const { handelSubmit, signUpGoogle, setCurrentUser, putUserName } = GetData();
+  const {
+    handelSubmit,
+    signUpGoogle,
+    setCurrentUser,
+    putUserName,
+    readExpenses,
+  } = GetData();
   const animateMsg = {
     position: "bottom-center",
     autoClose: 5000,
@@ -26,12 +32,14 @@ const SingUp = () => {
     e.preventDefault();
     e.target.disabled = true;
     try {
+      if (ConfirmPasswordRef.current.value !== passwordRef.current.value)
+        throw new Error("Password do not match ");
       const data = await handelSubmit(
         "signup",
         emailRef.current.value,
         passwordRef.current.value
       );
-      await putUserName(fullNameRef.current.value).then();
+      await putUserName(fullNameRef.current.value);
 
       setCurrentUser(data.user);
 

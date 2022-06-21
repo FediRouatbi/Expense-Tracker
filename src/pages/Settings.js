@@ -2,8 +2,10 @@ import React, { useRef } from "react";
 import { GetData } from "../context/AppContext";
 import { ToastContainer, toast } from "react-toastify";
 const Settings = () => {
-  const { deletAccount, updateE, updateP, currentUser } = GetData();
+  const { deletAccount, updateE, updateP, currentUser, putUserName } =
+    GetData();
   const emailRef = useRef();
+  const nameRef = useRef();
   const passwordRef = useRef();
   const animateMsg = {
     position: "bottom-center",
@@ -32,6 +34,13 @@ const Settings = () => {
         .catch((err) => toast.error(err.message, animateMsg));
       passwordRef.current.value = "";
     }
+    if (nameRef.current.value) {
+      e.target.disabled = true;
+      putUserName(nameRef.current.value).then(() =>
+        toast.success("username change successfully", animateMsg)
+      );
+      nameRef.current.value = "";
+    }
     e.target.disabled = false;
   };
 
@@ -49,9 +58,9 @@ const Settings = () => {
   return (
     <div className="  h-screen w-full ">
       <div className="p-11 w-4/5">
-        <h1 className="text-xl my-4">Settings</h1>
-        <div className="flex flex-col justify-items-end">
-          <ul className="flex justify-between items-center my-2">
+        <h1 className="text-xl pb-10">Settings</h1>
+        <div className="flex flex-col justify-items-end gap-5">
+          <ul className="flex justify-between items-center ">
             <li className="">Currency</li>
             <select className="">
               <option defaultValue>US Dollar</option>
@@ -61,7 +70,7 @@ const Settings = () => {
               <option>Ghanaian Cedis</option>
             </select>
           </ul>
-          <ul className="flex justify-between items-center my-2">
+          <ul className="flex justify-between items-center ">
             <li>Language</li>
             <select className="">
               <option defaultValue>English</option>
@@ -72,7 +81,7 @@ const Settings = () => {
               <option>Spanish</option>
             </select>
           </ul>
-          <ul className="flex justify-between items-center my-2">
+          <ul className="flex justify-between items-center">
             <li>Theme</li>
             <select className="">
               <option>Light</option>
@@ -84,32 +93,32 @@ const Settings = () => {
           <ul className="flex justify-between items-start">
             <li>Notification</li>
             <form className="">
-              <div className="flex items-center py-1">
+              <div className="flex items-center ">
                 <label htmlFor="newsletter">
                   Sign up for weekly newsletter
                 </label>
-                <input type="checkbox" className="ml-2" />
+                <input type="checkbox" className="" />
               </div>
-              <div className="flex items-center py-1">
+              <div className="flex items-center ">
                 <label htmlFor="newsletter">
                   Recieve Email on Transactions
                 </label>
-                <input type="checkbox" className="ml-2" defaultChecked />
+                <input type="checkbox" className="" defaultChecked />
               </div>
-              <div className="flex items-center py-1">
+              <div className="flex items-center ">
                 <label htmlFor="newsletter">Sign up for </label>
-                <input type="checkbox" className="ml-2" />
+                <input type="checkbox" className="" />
               </div>
-              <div className="flex items-center py-1">
+              <div className="flex items-center ">
                 <label htmlFor="newsletter">
                   Sign up for weekly newsletter
                 </label>
-                <input type="checkbox" className="ml-2" />
+                <input type="checkbox" className="" />
               </div>
             </form>
           </ul>
 
-          <ul className="flex justify-between my-2 pt-6">
+          <ul className="flex justify-between ">
             <li>Security</li>
             <ul className="text-right w-3/6 ">
               <li className="p-2 flex justify-between items-center ">
@@ -118,6 +127,15 @@ const Settings = () => {
                   placeholder={currentUser.email}
                   type="text"
                   ref={emailRef}
+                  className="border-2  rounded-md border-gray-800 p-2"
+                />
+              </li>
+              <li className="p-2 flex justify-between items-center ">
+                <span>Change Name</span>
+                <input
+                  placeholder={currentUser?.displayName}
+                  type="text"
+                  ref={nameRef}
                   className="border-2  rounded-md border-gray-800 p-2"
                 />
               </li>
@@ -134,7 +152,7 @@ const Settings = () => {
                 <button
                   onClick={(e) => update(e)}
                   type="text"
-                  className="disabled:bg-red-300 bg-gray-500 rounded-md text-white hover:bg-gray-600 p-2 shadow-xl active:shadow-md"
+                  className="	 disabled:bg-red-300 bg-gray-500 rounded-md text-white hover:bg-gray-600 p-2 shadow-xl active:shadow-md"
                 >
                   change
                 </button>

@@ -1,18 +1,32 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 import { MdLibraryAdd } from "react-icons/md";
 import { v4 as uuid } from "uuid";
 import Table from "../components/Table";
 import { GetData } from "../context/AppContext";
+import { ToastContainer, toast } from "react-toastify";
 const AllExpenses = () => {
-  const { addExpense } = GetData();
+  const { addExpense, whriteExpenses, allExpense, readExpenses } = GetData();
   const [add, setAdd] = useState(false);
   const prductNameRef = useRef();
   const prductColorRef = useRef();
   const prductCategoryRef = useRef();
   const prductPriceRef = useRef();
+  const animateMsg = {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  };
+  useEffect(() => {
+    whriteExpenses();
+  }, [allExpense]);
   const addE = (e) => {
     e.preventDefault();
+
     addExpense({
       id: uuid(),
       name: prductNameRef.current.value,
@@ -20,6 +34,11 @@ const AllExpenses = () => {
       category: prductCategoryRef.current.value,
       price: prductPriceRef.current.value,
     });
+    toast.success("Item have been add succsessfuly", animateMsg);
+    prductNameRef.current.value = "";
+    prductColorRef.current.value = "";
+    prductCategoryRef.current.value = "";
+    prductPriceRef.current.value = "";
   };
 
   return (
@@ -49,7 +68,7 @@ const AllExpenses = () => {
                 placeholder="CATEGORY	"
                 ref={prductCategoryRef}
               />
-              <input type="text" placeholder="PRICE	" ref={prductPriceRef} />
+              <input type="number" placeholder="PRICE	" ref={prductPriceRef} />
               <button
                 className="bg-sky-500 text-white"
                 onClick={(e) => addE(e)}
@@ -60,6 +79,7 @@ const AllExpenses = () => {
           </h1>
         )}
       </div>
+      <ToastContainer />
     </div>
   );
 };

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useContext, createContext } from "react";
-import { app, database } from "./firebaseConfig.js";
-import { collection, addDoc } from "firebase/firestore";
+import { db } from "./firebaseConfig.js";
+import { ref, set, onValue } from "firebase/database";
+
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -22,13 +23,30 @@ export const GetData = () => useContext(Context);
 const AppContext = ({ children }) => {
   const auth = getAuth();
   const [allExpense, setAllExpense] = useState([]);
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState("");
   const googleProvider = new GoogleAuthProvider();
-  const collectionRef = collection(database, "users");
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => setCurrentUser(user));
-  }, []);
 
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+      setAllExpense([]);
+      readExpenses(user);
+    });
+  }, []);
+  const readExpenses = (user) => {
+    const starCountRef = ref(db, `users/${user?.uid}`);
+    console.log(starCountRef);
+    onValue(starCountRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) setAllExpense(data);
+    });
+  };
+
+  const whriteExpenses = () => {
+    set(ref(db, `users/${currentUser.uid}`), {
+      ...allExpense,
+    });
+  };
   const addExpense = (data) => {
     setAllExpense((prev) => [...prev, data]);
   };
@@ -80,6 +98,8 @@ const AppContext = ({ children }) => {
         deletAccount,
         updateE,
         updateP,
+        whriteExpenses,
+        readExpenses,
       }}
     >
       {children}
