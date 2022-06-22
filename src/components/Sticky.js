@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
+import user from "../data/user.jpg";
 import "./sticky.scss";
 import { Link } from "react-router-dom";
 import { GetData } from "../context/AppContext";
@@ -7,21 +8,21 @@ import { GetData } from "../context/AppContext";
 const Sticky = () => {
   const { currentUser, signOutUser } = GetData();
   const [open, setOpen] = useState(false);
-  console.log(currentUser);
+
   const toogle = () => {
     setOpen((prev) => !prev);
   };
 
   return (
     currentUser && (
-      <div className="absolute top-4 right-6">
+      <div className="absolute top-4 right-6 z-30">
         <button
           className="text-black bg-gray-300 focus:ring-4 focus:outline-none focus:ring-sky-200 font-medium rounded-lg text-sm px-4 py-2 flex justify-center items-center gap-2  "
           type="button"
           onClick={() => toogle()}
         >
           <img
-            src={currentUser?.photoURL}
+            src={currentUser?.photoURL || user}
             alt=""
             className="w-8 h-8 rounded-full"
           />
@@ -64,7 +65,7 @@ const Sticky = () => {
               </Link>
             </li>
             <li>
-              <a
+              <button
                 onClick={() => {
                   toogle();
                   signOutUser();
@@ -72,7 +73,7 @@ const Sticky = () => {
                 className=" cursor-pointer block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >
                 Sign out
-              </a>
+              </button>
             </li>
           </ul>
         </div>

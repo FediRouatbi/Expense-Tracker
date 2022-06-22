@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useContext, createContext } from "react";
-import { app, database } from "./firebaseConfig.js";
-import { collection, addDoc } from "firebase/firestore";
+import { db } from "./firebaseConfig.js";
+import { ref, set, onValue } from "firebase/database";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -22,18 +22,48 @@ export const GetData = () => useContext(Context);
 const AppContext = ({ children }) => {
   const auth = getAuth();
   const [allExpense, setAllExpense] = useState([]);
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(false);
   const googleProvider = new GoogleAuthProvider();
-  const collectionRef = collection(database, "users");
+  const setData = () => {
+    const data = window.localStorage.getItem("user");
+    const exspense = window.localStorage.getItem("expense");
+    setAllExpense(JSON.parse(exspense));
+    setCurrentUser(JSON.parse(data));
+  };
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => setCurrentUser(user));
-  }, []);
+    setData();
+    onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+      readExpenses(user);
+    });
+  }, [auth]);
+  useEffect(() => {
+    window.localStorage.setItem("user", JSON.stringify(currentUser));
+    window.localStorage.setItem("expense", JSON.stringify(allExpense));
+  }, [currentUser, allExpense]);
 
+  console.log(allExpense);
+  console.log(currentUser);
+  const readExpenses = (user) => {
+    const starCountRef = ref(db, `users/${user?.uid}`);
+    console.log(starCountRef);
+    onValue(starCountRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) setAllExpense(data);
+      else setAllExpense([]);
+    });
+  };
+
+  const whriteExpenses = () => {
+    set(ref(db, `users/${currentUser.uid}`), {
+      ...allExpense,
+    });
+  };
   const addExpense = (data) => {
     setAllExpense((prev) => [...prev, data]);
   };
   const deleteExpense = (id) => {
-    setAllExpense((prev) => prev.filter((elm) => elm.id != id));
+    setAllExpense((prev) => prev.filter((elm) => elm.id !== id));
   };
   const updateE = (email) => {
     return updateEmail(currentUser, email);
@@ -80,6 +110,8 @@ const AppContext = ({ children }) => {
         deletAccount,
         updateE,
         updateP,
+        whriteExpenses,
+        readExpenses,
       }}
     >
       {children}

@@ -7,7 +7,8 @@ const Login = () => {
   const navTo = useNavigate();
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { handelSubmit, setCurrentUser } = GetData();
+  const { handelSubmit, setCurrentUser, currentUser } = GetData();
+  currentUser && navTo("/");
   const signIn = (e) => {
     e.preventDefault();
     e.target.disabled = true;
@@ -29,6 +30,7 @@ const Login = () => {
       )
       .finally(() => (e.target.disabled = false));
   };
+
   return (
     <main className="relative min-h-screen w-full bg-white">
       <div className="p-6">
@@ -42,7 +44,7 @@ const Login = () => {
         </header>
 
         <section className="absolute top-1/2 left-1/2 mx-auto max-w-sm -translate-x-1/2 -translate-y-1/2 transform space-y-4 text-center">
-          <div className="space-y-4">
+          <form className="space-y-4">
             <header className="mb-3 text-2xl font-bold">Log in</header>
             <div className="w-full rounded-2xl bg-gray-50 px-4 ring-2 ring-gray-200 focus-within:ring-blue-400">
               <input
@@ -72,7 +74,7 @@ const Login = () => {
             >
               LOG IN
             </button>
-          </div>
+          </form>
         </section>
       </div>
       <ToastContainer />
