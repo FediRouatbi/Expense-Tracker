@@ -6,7 +6,7 @@ import Table from "../components/Table";
 import { GetData } from "../context/AppContext";
 import { ToastContainer, toast } from "react-toastify";
 const AllExpenses = () => {
-  const { addExpense, whriteExpenses, allExpense, readExpenses } = GetData();
+  const { addExpense, whriteExpenses, allExpense } = GetData();
   const [add, setAdd] = useState(false);
   const prductNameRef = useRef();
   const prductColorRef = useRef();

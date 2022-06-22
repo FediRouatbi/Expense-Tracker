@@ -117,14 +117,13 @@ const SingUp = () => {
             <hr className="w-full border border-gray-300" />
           </div>
           <div className="flex justify-center">
-            <a
+            <button
               onClick={() => signUpWithGoogle()}
-              href="#"
               className="flex w-2/5 items-center justify-center gap-2 rounded-2xl border-b-2 border-b-gray-300 bg-white py-2.5 px-4 font-bold text-blue-500 ring-2 ring-gray-300 hover:bg-gray-200 active:translate-y-[0.125rem] active:border-b-gray-200"
             >
               <FcGoogle size={20} />
               GOOGLE
-            </a>
+            </button>
           </div>
         </section>
       </div>

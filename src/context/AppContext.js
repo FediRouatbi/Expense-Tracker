@@ -36,7 +36,7 @@ const AppContext = ({ children }) => {
       setCurrentUser(user);
       readExpenses(user);
     });
-  }, []);
+  }, [auth]);
   useEffect(() => {
     window.localStorage.setItem("user", JSON.stringify(currentUser));
     window.localStorage.setItem("expense", JSON.stringify(allExpense));
@@ -63,7 +63,7 @@ const AppContext = ({ children }) => {
     setAllExpense((prev) => [...prev, data]);
   };
   const deleteExpense = (id) => {
-    setAllExpense((prev) => prev.filter((elm) => elm.id != id));
+    setAllExpense((prev) => prev.filter((elm) => elm.id !== id));
   };
   const updateE = (email) => {
     return updateEmail(currentUser, email);
@@ -112,7 +112,6 @@ const AppContext = ({ children }) => {
         updateP,
         whriteExpenses,
         readExpenses,
-        currentUser,
       }}
     >
       {children}

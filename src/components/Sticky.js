@@ -65,7 +65,7 @@ const Sticky = () => {
               </Link>
             </li>
             <li>
-              <a
+              <button
                 onClick={() => {
                   toogle();
                   signOutUser();
@@ -73,7 +73,7 @@ const Sticky = () => {
                 className=" cursor-pointer block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >
                 Sign out
-              </a>
+              </button>
             </li>
           </ul>
         </div>

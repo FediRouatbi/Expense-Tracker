@@ -61,10 +61,7 @@ const Table = ({ allExpenses }) => {
                   {allExpenses && (
                     <>
                       <td className="px-6 py-4 text-right">
-                        <a
-                          href="#"
-                          className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                        >
+                        <button className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                           <MdDelete
                             onClick={(e) => deleteE(e)}
                             className="inline-block"
@@ -72,7 +69,7 @@ const Table = ({ allExpenses }) => {
                             color="#ff8787"
                             data-id={elm.id}
                           />
-                        </a>
+                        </button>
                       </td>
                     </>
                   )}
