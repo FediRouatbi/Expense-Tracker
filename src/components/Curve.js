@@ -1,13 +1,6 @@
 import React from "react";
 import "./curve.scss";
-import "../../node_modules/react-vis/dist/style.css";
-import { XYPlot, LineSeries } from "react-vis";
-import {
-  HorizontalGridLines,
-  VerticalGridLines,
-  XAxis,
-  YAxis,
-} from "react-vis/dist";
+
 
 const Curve = () => {
   const data = [
@@ -39,14 +32,14 @@ const Curve = () => {
   return (
     <div className="curve ">
       <div className="mx-auto w-[880px]">
-        <XYPlot width={850} height={200}>
+        {/* <XYPlot width={850} height={200}>
           <VerticalGridLines />
           <HorizontalGridLines />
           <XAxis />
           <YAxis />
           <LineSeries data={data} />
           <LineSeries data={data2} />
-        </XYPlot>
+        </XYPlot> */}
       </div>
     </div>
   );
