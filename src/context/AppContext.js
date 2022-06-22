@@ -26,23 +26,31 @@ const AppContext = ({ children }) => {
   const googleProvider = new GoogleAuthProvider();
   const setData = () => {
     const data = window.localStorage.getItem("user");
+    const exspense = window.localStorage.getItem("expense");
+    setAllExpense(JSON.parse(exspense));
     setCurrentUser(JSON.parse(data));
   };
-  window.addEventListener("beforeunload", setData);
   useEffect(() => {
+    setData();
     onAuthStateChanged(auth, (user) => {
-      window.localStorage.setItem("user", JSON.stringify(user));
       setCurrentUser(user);
-      setAllExpense([]);
       readExpenses(user);
     });
   }, []);
+  useEffect(() => {
+    window.localStorage.setItem("user", JSON.stringify(currentUser));
+    window.localStorage.setItem("expense", JSON.stringify(allExpense));
+  }, [currentUser, allExpense]);
+
+  console.log(allExpense);
+  console.log(currentUser);
   const readExpenses = (user) => {
     const starCountRef = ref(db, `users/${user?.uid}`);
     console.log(starCountRef);
     onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
       if (data) setAllExpense(data);
+      else setAllExpense([]);
     });
   };
 

@@ -118,8 +118,8 @@ const Settings = () => {
             </form>
           </ul>
 
-          <ul className="flex justify-between ">
-            <li>Security</li>
+          <form className="flex justify-between ">
+            <div>Security</div>
             <ul className="text-right w-3/6 ">
               <li className="p-2 flex justify-between items-center ">
                 <span>Change Email</span>
@@ -158,7 +158,7 @@ const Settings = () => {
                 </button>
               </li>
             </ul>
-          </ul>
+          </form>
           <li className="flex ">
             <button
               onClick={deleteAcc}

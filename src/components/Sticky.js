@@ -15,7 +15,7 @@ const Sticky = () => {
 
   return (
     currentUser && (
-      <div className="absolute top-4 right-6">
+      <div className="absolute top-4 right-6 z-30">
         <button
           className="text-black bg-gray-300 focus:ring-4 focus:outline-none focus:ring-sky-200 font-medium rounded-lg text-sm px-4 py-2 flex justify-center items-center gap-2  "
           type="button"
