@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GetData } from "../context/AppContext";
 import { ToastContainer, toast } from "react-toastify";
@@ -26,12 +25,14 @@ const SingUp = () => {
     e.preventDefault();
     e.target.disabled = true;
     try {
+      if (ConfirmPasswordRef.current.value !== passwordRef.current.value)
+        throw new Error("Password do not match ");
       const data = await handelSubmit(
         "signup",
         emailRef.current.value,
         passwordRef.current.value
       );
-      await putUserName(fullNameRef.current.value).then();
+      await putUserName(fullNameRef.current.value);
 
       setCurrentUser(data.user);
 
@@ -66,7 +67,7 @@ const SingUp = () => {
         </header>
 
         <section className="absolute top-1/2 left-1/2 mx-auto max-w-sm -translate-x-1/2 -translate-y-1/2 transform space-y-4 text-center">
-          <div className="space-y-4">
+          <form className="space-y-4">
             <header className="mb-3 text-2xl font-bold"> Sign up</header>
             <div className="w-full rounded-2xl bg-gray-50 px-4 ring-2 ring-gray-200 focus-within:ring-blue-400">
               <input
@@ -108,7 +109,7 @@ const SingUp = () => {
             >
               SIGN UP
             </button>
-          </div>
+          </form>
 
           <div className="flex items-center space-x-4">
             <hr className="w-full border border-gray-300" />
@@ -116,14 +117,13 @@ const SingUp = () => {
             <hr className="w-full border border-gray-300" />
           </div>
           <div className="flex justify-center">
-            <a
+            <button
               onClick={() => signUpWithGoogle()}
-              href="#"
               className="flex w-2/5 items-center justify-center gap-2 rounded-2xl border-b-2 border-b-gray-300 bg-white py-2.5 px-4 font-bold text-blue-500 ring-2 ring-gray-300 hover:bg-gray-200 active:translate-y-[0.125rem] active:border-b-gray-200"
             >
               <FcGoogle size={20} />
               GOOGLE
-            </a>
+            </button>
           </div>
         </section>
       </div>

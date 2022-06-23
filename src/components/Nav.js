@@ -58,7 +58,7 @@ const Nav = () => {
               <IoMdSettings className="navigation__item--logo" />
               <div className="navigation__item--text">settings</div>
             </Link>
-            <a
+            <button
               className="navigation__item"
               onClick={() => {
                 signOutUser();
@@ -67,7 +67,7 @@ const Nav = () => {
             >
               <BiLogOut className="navigation__item--logo" />
               <div className="navigation__item--text"> Sign out</div>
-            </a>
+            </button>
           </ul>
         </nav>
         {hidden && (
