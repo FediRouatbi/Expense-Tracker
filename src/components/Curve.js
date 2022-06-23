@@ -1,6 +1,14 @@
 import React from "react";
 import "./curve.scss";
-
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid,
+  Legend,
+} from "recharts";
 
 const Curve = () => {
   const data = [
@@ -31,15 +39,21 @@ const Curve = () => {
 
   return (
     <div className="curve ">
-      <div className="mx-auto w-[880px]">
-        {/* <XYPlot width={850} height={200}>
-          <VerticalGridLines />
-          <HorizontalGridLines />
+      <div className="mx-auto w-[880px] text-center">
+        <LineChart
+          width={700}
+          height={230}
+          data={data}
+          margin={{ bottom: 30, right: 20 }}
+        >
+          <Line type="monotone" dataKey="x" />
+          <Line type="monotone" dataKey="y" />
+          <CartesianGrid />
           <XAxis />
           <YAxis />
-          <LineSeries data={data} />
-          <LineSeries data={data2} />
-        </XYPlot> */}
+          {/* <Legend /> */}
+          <Tooltip />
+        </LineChart>
       </div>
     </div>
   );
