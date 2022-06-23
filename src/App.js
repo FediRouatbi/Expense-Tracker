@@ -28,6 +28,7 @@ function App() {
             <Route path="/expenses" element={<PrivateRoute />}>
               <Route path="/expenses" element={<AllExpenses />} />
             </Route>
+
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SingUp />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />

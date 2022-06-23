@@ -7,8 +7,8 @@ const Login = () => {
   const navTo = useNavigate();
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { handelSubmit, setCurrentUser, currentUser } = GetData();
-  currentUser && navTo("/");
+  const { handelSubmit, setCurrentUser } = GetData();
+
   const signIn = (e) => {
     e.preventDefault();
     e.target.disabled = true;
