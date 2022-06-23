@@ -42,11 +42,8 @@ const AppContext = ({ children }) => {
     window.localStorage.setItem("expense", JSON.stringify(allExpense));
   }, [currentUser, allExpense]);
 
-  console.log(allExpense);
-  console.log(currentUser);
   const readExpenses = (user) => {
     const starCountRef = ref(db, `users/${user?.uid}`);
-    console.log(starCountRef);
     onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
       if (data) setAllExpense(data);
