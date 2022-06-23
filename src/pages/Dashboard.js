@@ -8,7 +8,7 @@ import Aside from "../components/Aside";
 const Dashboard = () => {
   return (
     <div className=" w-full h-screen">
-      <div className="p-11 pt-20 flex">
+      <div className="p-11 pt-20 flex h-screen">
         <main className="w-2/3   flex flex-col gap-4">
           <Spendings />
           <Curve />

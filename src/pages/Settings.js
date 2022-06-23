@@ -57,7 +57,7 @@ const Settings = () => {
   };
   return (
     <div className="  h-screen w-full ">
-      <div className="p-11 w-4/5">
+      <div className="p-11 w-4/5 pt-14">
         <h1 className="text-xl pb-10">Settings</h1>
         <div className="flex flex-col justify-items-end gap-5">
           <ul className="flex justify-between items-center ">

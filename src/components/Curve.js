@@ -51,7 +51,7 @@ export const data = {
 };
 const Curve = () => {
   return (
-    <div className=" p-2 rounded-lg border-gray-400 border h-64">
+    <div className=" p-2 rounded-lg border-gray-400 border h-64 ">
       <div className="h-60 mx-auto">
         <Line
           options={(options, { maintainAspectRatio: false })}
