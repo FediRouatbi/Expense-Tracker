@@ -2,13 +2,21 @@ import React, { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GetData } from "../context/AppContext";
 import { ToastContainer, toast } from "react-toastify";
-
+import { FcGoogle } from "react-icons/fc";
 const Login = () => {
   const navTo = useNavigate();
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { handelSubmit, setCurrentUser } = GetData();
-
+  const { handelSubmit, setCurrentUser, signUpGoogle } = GetData();
+  const animateMsg = {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  };
   const signIn = (e) => {
     e.preventDefault();
     e.target.disabled = true;
@@ -17,20 +25,17 @@ const Login = () => {
         setCurrentUser(resp.user);
         navTo("/");
       })
-      .catch((err) =>
-        toast.error(`${err.message}`, {
-          position: "bottom-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        })
-      )
+      .catch((err) => toast.error(`${err.message}`, animateMsg))
       .finally(() => (e.target.disabled = false));
   };
-
+  const signUpWithGoogle = () => {
+    signUpGoogle()
+      .then((resp) => {
+        setCurrentUser(resp.user);
+        navTo("/");
+      })
+      .catch((err) => toast.error(`${err.message}`, animateMsg));
+  };
   return (
     <main className="relative min-h-screen w-full bg-white">
       <div className="p-6">
@@ -75,6 +80,19 @@ const Login = () => {
               LOG IN
             </button>
           </form>
+          <div className="flex items-center space-x-4">
+            <hr className="w-full border border-gray-300" />
+            <div className="font-semibold text-gray-400">OR</div>
+            <hr className="w-full border border-gray-300" />
+          </div>
+
+          <button
+            onClick={() => signUpWithGoogle()}
+            className=" flex mx-auto items-center justify-center gap-2 rounded-2xl border-b-2 border-b-gray-300 bg-white py-2.5 px-4 font-bold text-blue-500 ring-2 ring-gray-300 hover:bg-gray-200 active:translate-y-[0.125rem] active:border-b-gray-200"
+          >
+            <FcGoogle size={20} />
+            SIGN‑IN WITH GOOGLE
+          </button>
         </section>
       </div>
       <ToastContainer />

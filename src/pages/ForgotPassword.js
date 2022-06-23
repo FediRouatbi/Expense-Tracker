@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { GetData } from "../context/AppContext";
 const ForgotPassword = () => {
-  const { forgetPassword } = GetData();
+  const { forgotPassword } = GetData();
   const emailRef = useRef();
   const animateMsg = {
     position: "bottom-center",
@@ -17,7 +17,7 @@ const ForgotPassword = () => {
   const reset = (e) => {
     e.preventDefault();
     e.target.disabled = true;
-    forgetPassword(emailRef.current.value)
+    forgotPassword(emailRef.current.value)
       .then(() => toast.success(`Password reset email sent!`, animateMsg))
       .catch((err) => toast.error(`${err.message}`, animateMsg))
       .finally(() => (e.target.disabled = false));

@@ -6,7 +6,7 @@ import Table from "../components/Table";
 import { GetData } from "../context/AppContext";
 import { ToastContainer, toast } from "react-toastify";
 const AllExpenses = () => {
-  const { addExpense, whriteExpenses, allExpense } = GetData();
+  const { addExpense } = GetData();
   const [add, setAdd] = useState(false);
   const prductNameRef = useRef();
   const prductColorRef = useRef();
@@ -21,9 +21,6 @@ const AllExpenses = () => {
     draggable: true,
     progress: undefined,
   };
-  useEffect(() => {
-    whriteExpenses();
-  }, [allExpense]);
   const addE = (e) => {
     e.preventDefault();
     const today = new Date();

@@ -17,26 +17,21 @@ import {
   updatePassword,
 } from "firebase/auth";
 const Context = createContext();
+
 export const GetData = () => useContext(Context);
 
 const AppContext = ({ children }) => {
   const auth = getAuth();
   const [allExpense, setAllExpense] = useState([]);
-  const [currentUser, setCurrentUser] = useState(false);
+  const [currentUser, setCurrentUser] = useState("");
   const googleProvider = new GoogleAuthProvider();
-  const setData = () => {
-    const data = window.localStorage.getItem("user");
-    const exspense = window.localStorage.getItem("expense");
-    setAllExpense(JSON.parse(exspense));
-    setCurrentUser(JSON.parse(data));
-  };
+
   useEffect(() => {
-    setData();
     onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
       readExpenses(user);
     });
-  }, [auth]);
+  }, []);
   useEffect(() => {
     window.localStorage.setItem("user", JSON.stringify(currentUser));
     window.localStorage.setItem("expense", JSON.stringify(allExpense));
@@ -46,18 +41,22 @@ const AppContext = ({ children }) => {
     const starCountRef = ref(db, `users/${user?.uid}`);
     onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
-      if (data) setAllExpense(data);
-      else setAllExpense([]);
+      if (data) {
+        setAllExpense(data);
+      } else setAllExpense([]);
     });
   };
 
-  const whriteExpenses = () => {
+  const writeExpenses = (newE) => {
+    const expenses = [...allExpense, newE];
+
     set(ref(db, `users/${currentUser.uid}`), {
-      ...allExpense,
+      ...expenses,
     });
   };
   const addExpense = (data) => {
     setAllExpense((prev) => [...prev, data]);
+    writeExpenses(data);
   };
   const deleteExpense = (id) => {
     setAllExpense((prev) => prev.filter((elm) => elm.id !== id));
@@ -80,10 +79,10 @@ const AppContext = ({ children }) => {
     if (type === "signin")
       return signInWithEmailAndPassword(auth, email, password);
   };
-  const forgetPassword = (email) => {
+  const forgotPassword = (email) => {
     return sendPasswordResetEmail(auth, email);
   };
-  const deletAccount = () => {
+  const deleteAccount = () => {
     return deleteUser(auth.currentUser);
   };
 
@@ -103,11 +102,11 @@ const AppContext = ({ children }) => {
         addExpense,
         allExpense,
         deleteExpense,
-        forgetPassword,
-        deletAccount,
+        forgotPassword,
+        deleteAccount,
         updateE,
         updateP,
-        whriteExpenses,
+        writeExpenses,
         readExpenses,
       }}
     >

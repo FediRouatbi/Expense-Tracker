@@ -15,7 +15,7 @@ const Sticky = () => {
 
   return (
     currentUser && (
-      <div className="absolute top-4 right-6 z-30">
+      <div className="absolute top-4 right-6 z-10">
         <button
           className="text-black bg-gray-300 focus:ring-4 focus:outline-none focus:ring-sky-200 font-medium rounded-lg text-sm px-4 py-2 flex justify-center items-center gap-2  "
           type="button"
@@ -70,7 +70,7 @@ const Sticky = () => {
                   toogle();
                   signOutUser();
                 }}
-                className=" cursor-pointer block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                className=" w-full text-left cursor-pointer block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >
                 Sign out
               </button>

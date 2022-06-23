@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { GetData } from "../context/AppContext";
 import { ToastContainer, toast } from "react-toastify";
 
-import { FcGoogle } from "react-icons/fc";
+
 
 const SingUp = () => {
   const fullNameRef = useRef();
@@ -42,15 +42,6 @@ const SingUp = () => {
     } finally {
       e.target.disabled = false;
     }
-  };
-
-  const signUpWithGoogle = () => {
-    signUpGoogle()
-      .then((resp) => {
-        setCurrentUser(resp.user);
-        navTo("/");
-      })
-      .catch((err) => toast.error(`${err.message}`, animateMsg));
   };
 
   return (
@@ -110,21 +101,6 @@ const SingUp = () => {
               SIGN UP
             </button>
           </form>
-
-          <div className="flex items-center space-x-4">
-            <hr className="w-full border border-gray-300" />
-            <div className="font-semibold text-gray-400">OR</div>
-            <hr className="w-full border border-gray-300" />
-          </div>
-          <div className="flex justify-center">
-            <button
-              onClick={() => signUpWithGoogle()}
-              className="flex w-2/5 items-center justify-center gap-2 rounded-2xl border-b-2 border-b-gray-300 bg-white py-2.5 px-4 font-bold text-blue-500 ring-2 ring-gray-300 hover:bg-gray-200 active:translate-y-[0.125rem] active:border-b-gray-200"
-            >
-              <FcGoogle size={20} />
-              GOOGLE
-            </button>
-          </div>
         </section>
       </div>
     </main>

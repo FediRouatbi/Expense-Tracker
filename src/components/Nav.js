@@ -74,7 +74,7 @@ const Nav = () => {
           <AiOutlineMenu
             style={{ margin: "1em", cursor: "pointer" }}
             size={30}
-            className="absolute top-2  left-2  animate-wiggle "
+            className="absolute top-2  left-2  animate-wiggle z-10"
             onClick={() => {
               setHidden("");
             }}

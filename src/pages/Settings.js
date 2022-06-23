@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { GetData } from "../context/AppContext";
 import { ToastContainer, toast } from "react-toastify";
 const Settings = () => {
-  const { deletAccount, updateE, updateP, currentUser, putUserName } =
+  const { deleteAccount, updateE, updateP, currentUser, putUserName } =
     GetData();
   const emailRef = useRef();
   const nameRef = useRef();
@@ -49,7 +49,7 @@ const Settings = () => {
       "are you sure you want to delete your account ? "
     );
     if (answer)
-      deletAccount()
+      deleteAccount()
         .then(() => {
           toast.success("done", animateMsg);
         })
@@ -57,7 +57,7 @@ const Settings = () => {
   };
   return (
     <div className="  h-screen w-full ">
-      <div className="p-11 w-4/5 pt-14">
+      <div className="p-11 w-4/5 pt-14 h-screen">
         <h1 className="text-xl pb-10">Settings</h1>
         <div className="flex flex-col justify-items-end gap-5">
           <ul className="flex justify-between items-center ">
