@@ -3,15 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { GetData } from "../context/AppContext";
 import { ToastContainer, toast } from "react-toastify";
 
-
-
 const SingUp = () => {
   const fullNameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const ConfirmPasswordRef = useRef();
   const navTo = useNavigate();
-  const { handelSubmit, signUpGoogle, setCurrentUser, putUserName } = GetData();
+  const { handelSubmit, setCurrentUser, putUserName } = GetData();
   const animateMsg = {
     position: "bottom-center",
     autoClose: 5000,

@@ -29,7 +29,9 @@ const Spend = ({ data }) => {
       </div>
       <div className="spend__data">
         <div className="spend__data--text">{data.toUpperCase()} </div>
-        <div className="spend__data--amount">${Math.abs(val)}</div>
+        <div className="spend__data--amount">
+          ${data === "Balance" ? val : Math.abs(val)}
+        </div>
       </div>
     </div>
   );
