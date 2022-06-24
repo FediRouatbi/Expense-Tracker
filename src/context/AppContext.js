@@ -48,14 +48,14 @@ const AppContext = ({ children }) => {
   };
 
   const writeExpenses = (newE) => {
-    const expenses = [...allExpense, newE];
+    const expenses = [newE, ...allExpense];
 
     set(ref(db, `users/${currentUser.uid}`), {
       ...expenses,
     });
   };
   const addExpense = (data) => {
-    setAllExpense((prev) => [...prev, data]);
+    setAllExpense((prev) => [data, ...prev]);
     writeExpenses(data);
   };
   const deleteExpense = (id) => {

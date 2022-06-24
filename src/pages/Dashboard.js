@@ -13,7 +13,7 @@ const Dashboard = () => {
           <Spendings />
           <Curve />
           <div>
-            <Title />
+            <Title text="Latest" />
             <Table allExpenses={false} />
           </div>
         </main>

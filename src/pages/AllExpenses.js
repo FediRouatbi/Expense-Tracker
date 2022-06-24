@@ -8,10 +8,11 @@ import { ToastContainer, toast } from "react-toastify";
 const AllExpenses = () => {
   const { addExpense } = GetData();
   const [add, setAdd] = useState(false);
-  const prductNameRef = useRef();
-  const prductColorRef = useRef();
-  const prductCategoryRef = useRef();
-  const prductPriceRef = useRef();
+  const productNameRef = useRef();
+  const productColorRef = useRef();
+  const productCategoryRef = useRef();
+  const productPriceRef = useRef();
+  const productDateRef = useRef();
   const animateMsg = {
     position: "bottom-center",
     autoClose: 5000,
@@ -30,17 +31,20 @@ const AllExpenses = () => {
 
     addExpense({
       id: uuid(),
-      name: prductNameRef.current.value,
-      color: prductColorRef.current.value,
-      category: prductCategoryRef.current.value,
-      price: prductPriceRef.current.value,
-      date: `${dd}/${mm}/${yyyy}`,
+      name: productNameRef.current.value,
+      color: productColorRef.current.value,
+      category: productCategoryRef.current.value,
+      price: productPriceRef.current.value,
+      date: productDateRef.current.value || `${yyyy}-${mm}-${dd}`,
     });
+
+    console.log(productDateRef.current.value);
     toast.success("Item have been add succsessfuly", animateMsg);
-    prductNameRef.current.value = "";
-    prductColorRef.current.value = "";
-    prductCategoryRef.current.value = "";
-    prductPriceRef.current.value = "";
+    productNameRef.current.value = "";
+    productColorRef.current.value = "";
+    productCategoryRef.current.value = "";
+    productPriceRef.current.value = "";
+    productDateRef.current.value = "";
   };
 
   return (
@@ -88,20 +92,21 @@ const AllExpenses = () => {
                 type="text"
                 placeholder="PRODUCT NAME	"
                 required
-                ref={prductNameRef}
+                ref={productNameRef}
               />
-              <input type="text" placeholder="COLOR	" ref={prductColorRef} />
+              <input type="text" placeholder="COLOR	" ref={productColorRef} />
               <input
                 type="text"
                 placeholder="CATEGORY	"
-                ref={prductCategoryRef}
+                ref={productCategoryRef}
               />
               <input
                 type="number"
                 placeholder="PRICE	"
                 required
-                ref={prductPriceRef}
+                ref={productPriceRef}
               />
+              <input type="date" placeholder="Date" ref={productDateRef} />
               <button className="bg-sky-500 text-white">ADD</button>
             </form>
           </h1>
