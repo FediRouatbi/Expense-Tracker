@@ -10,8 +10,6 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import { GiExpense } from "react-icons/gi";
-
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -79,7 +77,6 @@ export const data = {
 
 const Curve = () => {
   const { allExpense } = GetData();
-  console.log(allExpense);
   const arr = dayAndDateList.map((elm) =>
     allExpense.filter((exp) => exp.date === elm[1])
   );

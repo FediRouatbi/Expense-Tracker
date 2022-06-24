@@ -21,7 +21,7 @@ const Spend = ({ data }) => {
   };
   const walletColor = { color: data === "Balance" && "#94d82d" };
   const backgroundWallet = { backgroundColor: data === "Balance" && "#868e96" };
-  console.log(val);
+
   return (
     <div
       className={` spend ${
