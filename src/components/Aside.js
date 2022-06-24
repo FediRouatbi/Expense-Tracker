@@ -7,7 +7,7 @@ const Aside = () => {
   const { allExpense } = GetData();
   const inputList = new Set();
   let duplicates = new Set();
-  //expenses with no id so we can compare objects(string)
+  //expenses with no id and date so we can compare objects
   const expenses = allExpense.map((elm) => {
     const { id, date, ...rest } = elm;
     return rest;

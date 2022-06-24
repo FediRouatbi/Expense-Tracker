@@ -6,6 +6,7 @@ import Table from "../components/Table";
 import { GetData } from "../context/AppContext";
 import { ToastContainer, toast } from "react-toastify";
 const AllExpenses = () => {
+  const [search, setSearch] = useState("");
   const { addExpense } = GetData();
   const [add, setAdd] = useState(false);
   const productNameRef = useRef();
@@ -22,6 +23,9 @@ const AllExpenses = () => {
     draggable: true,
     progress: undefined,
   };
+  const change = (e) => {
+    setSearch(e.target.value);
+  };
   const addE = (e) => {
     e.preventDefault();
     const today = new Date();
@@ -31,14 +35,12 @@ const AllExpenses = () => {
 
     addExpense({
       id: uuid(),
-      name: productNameRef.current.value,
-      color: productColorRef.current.value,
-      category: productCategoryRef.current.value,
+      name: productNameRef.current.value.trim().toLowerCase(),
+      color: productColorRef.current.value.trim().toLowerCase(),
+      category: productCategoryRef.current.value.trim().toLowerCase(),
       price: productPriceRef.current.value,
       date: productDateRef.current.value || `${yyyy}-${mm}-${dd}`,
     });
-
-    console.log(productDateRef.current.value);
     toast.success("Item have been add succsessfuly", animateMsg);
     productNameRef.current.value = "";
     productColorRef.current.value = "";
@@ -71,6 +73,8 @@ const AllExpenses = () => {
             id="table-search"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Search for items"
+            value={search}
+            onChange={(e) => change(e)}
           />
         </div>
         <button className=" " onClick={() => setAdd((prev) => !prev)}>
@@ -79,7 +83,7 @@ const AllExpenses = () => {
       </div>
       <div className=" flex p-11 pt-40  gap-4 h-screen ">
         <div className="relative  w-2/3 overflow-y-auto">
-          <Table allExpenses={true} />
+          <Table allExpenses={true} search={search} />
         </div>
 
         {add && (
