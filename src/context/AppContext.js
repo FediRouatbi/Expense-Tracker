@@ -47,19 +47,24 @@ const AppContext = ({ children }) => {
     });
   };
 
-  const writeExpenses = (newE) => {
-    const expenses = [newE, ...allExpense];
-
+  const writeExpenses = (Expenses) => {
     set(ref(db, `users/${currentUser.uid}`), {
-      ...expenses,
+      ...Expenses,
     });
   };
   const addExpense = (data) => {
-    setAllExpense((prev) => [data, ...prev]);
-    writeExpenses(data);
+    setAllExpense((prev) => {
+      const newExpenses = [data, ...prev];
+      writeExpenses(newExpenses);
+      return newExpenses;
+    });
   };
   const deleteExpense = (id) => {
-    setAllExpense((prev) => prev.filter((elm) => elm.id !== id));
+    setAllExpense((prev) => {
+      const newExpenses = prev.filter((elm) => elm.id !== id);
+      writeExpenses(newExpenses);
+      return newExpenses;
+    });
   };
   const updateE = (email) => {
     return updateEmail(currentUser, email);
