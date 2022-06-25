@@ -60,27 +60,6 @@ const Settings = () => {
       <div className="p-11 w-4/5 pt-14 h-screen">
         <h1 className="text-xl pb-10">Settings</h1>
         <div className="flex flex-col justify-items-end gap-5">
-          <ul className="flex justify-between items-center ">
-            <li className="">Currency</li>
-            <select className="">
-              <option defaultValue>US Dollar</option>
-              <option>European Euro</option>
-              <option>Pound </option>
-              <option>Tunisian Dinar</option>
-              <option>Ghanaian Cedis</option>
-            </select>
-          </ul>
-          <ul className="flex justify-between items-center ">
-            <li>Language</li>
-            <select className="">
-              <option defaultValue>English</option>
-              <option>French</option>
-              <option>Arabic</option>
-              <option>German</option>
-              <option>Portuguese</option>
-              <option>Spanish</option>
-            </select>
-          </ul>
           <ul className="flex justify-between items-center">
             <li>Theme</li>
             <select className="">
@@ -143,7 +122,7 @@ const Settings = () => {
                 <span>Change Password</span>
                 <input
                   ref={passwordRef}
-                  type="text"
+                  type="password"
                   className="border-2  rounded-md border-gray-800 p-2 "
                 />
               </li>

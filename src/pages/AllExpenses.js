@@ -6,12 +6,14 @@ import Table from "../components/Table";
 import { GetData } from "../context/AppContext";
 import { ToastContainer, toast } from "react-toastify";
 const AllExpenses = () => {
+  const [search, setSearch] = useState("");
   const { addExpense } = GetData();
   const [add, setAdd] = useState(false);
-  const prductNameRef = useRef();
-  const prductColorRef = useRef();
-  const prductCategoryRef = useRef();
-  const prductPriceRef = useRef();
+  const productNameRef = useRef();
+  const productColorRef = useRef();
+  const productCategoryRef = useRef();
+  const productPriceRef = useRef();
+  const productDateRef = useRef();
   const animateMsg = {
     position: "bottom-center",
     autoClose: 5000,
@@ -20,6 +22,9 @@ const AllExpenses = () => {
     pauseOnHover: true,
     draggable: true,
     progress: undefined,
+  };
+  const change = (e) => {
+    setSearch(e.target.value);
   };
   const addE = (e) => {
     e.preventDefault();
@@ -30,17 +35,18 @@ const AllExpenses = () => {
 
     addExpense({
       id: uuid(),
-      name: prductNameRef.current.value,
-      color: prductColorRef.current.value,
-      category: prductCategoryRef.current.value,
-      price: prductPriceRef.current.value,
-      date: `${dd}/${mm}/${yyyy}`,
+      name: productNameRef.current.value.trim().toLowerCase(),
+      color: productColorRef.current.value.trim().toLowerCase(),
+      category: productCategoryRef.current.value.trim().toLowerCase(),
+      price: productPriceRef.current.value,
+      date: productDateRef.current.value || `${yyyy}-${mm}-${dd}`,
     });
     toast.success("Item have been add succsessfuly", animateMsg);
-    prductNameRef.current.value = "";
-    prductColorRef.current.value = "";
-    prductCategoryRef.current.value = "";
-    prductPriceRef.current.value = "";
+    productNameRef.current.value = "";
+    productColorRef.current.value = "";
+    productCategoryRef.current.value = "";
+    productPriceRef.current.value = "";
+    productDateRef.current.value = "";
   };
 
   return (
@@ -67,6 +73,8 @@ const AllExpenses = () => {
             id="table-search"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Search for items"
+            value={search}
+            onChange={(e) => change(e)}
           />
         </div>
         <button className=" " onClick={() => setAdd((prev) => !prev)}>
@@ -75,7 +83,7 @@ const AllExpenses = () => {
       </div>
       <div className=" flex p-11 pt-40  gap-4 h-screen ">
         <div className="relative  w-2/3 overflow-y-auto">
-          <Table allExpenses={true} />
+          <Table allExpenses={true} search={search} />
         </div>
 
         {add && (
@@ -88,21 +96,24 @@ const AllExpenses = () => {
                 type="text"
                 placeholder="PRODUCT NAME	"
                 required
-                ref={prductNameRef}
+                ref={productNameRef}
               />
-              <input type="text" placeholder="COLOR	" ref={prductColorRef} />
+              <input type="text" placeholder="COLOR	" ref={productColorRef} />
               <input
                 type="text"
                 placeholder="CATEGORY	"
-                ref={prductCategoryRef}
+                ref={productCategoryRef}
               />
               <input
                 type="number"
                 placeholder="PRICE	"
                 required
-                ref={prductPriceRef}
+                ref={productPriceRef}
               />
-              <button className="bg-sky-500 text-white">ADD</button>
+              <input type="date" placeholder="Date" ref={productDateRef} />
+              <button className="bg-sky-500 text-white hover:bg-sky-600 font-semibold tracking-widest transition-all ease-in-out">
+                ADD
+              </button>
             </form>
           </h1>
         )}

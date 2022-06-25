@@ -7,9 +7,9 @@ const Aside = () => {
   const { allExpense } = GetData();
   const inputList = new Set();
   let duplicates = new Set();
-  //expenses with no id
+  //expenses with no id and date so we can compare objects
   const expenses = allExpense.map((elm) => {
-    const { id, ...rest } = elm;
+    const { id, date, ...rest } = elm;
     return rest;
   });
   for (const item of expenses) {
@@ -24,7 +24,7 @@ const Aside = () => {
     <aside className="aside">
       <Title text="Recurring" />
       <div className="expense">
-        <table className=" border-separate border-spacing-2">
+        <table className=" border-separate border-spacing-x-1 border-spacing-y-4">
           <thead className="bg-slate-100">
             <tr>
               <th className="border border-slate-300">Name</th>
@@ -34,12 +34,18 @@ const Aside = () => {
             </tr>
           </thead>
           <tbody className="border">
-            {duplicates.map((elm) => (
-              <tr className="text-center">
+            {duplicates.map((elm, i) => (
+              <tr className="text-center" key={i}>
                 <td className="border border-slate-300">{elm.name}</td>
                 <td className="border border-slate-300">{elm.category}</td>
                 <td className="border border-slate-300">{elm.color}</td>
-                <td className="border border-slate-300">{elm.price}</td>
+                <td
+                  className={`border ${
+                    elm.price > 0 ? "bg-lime-300" : "bg-red-300"
+                  } `}
+                >
+                  ${Math.abs(elm.price)}
+                </td>
               </tr>
             ))}
           </tbody>

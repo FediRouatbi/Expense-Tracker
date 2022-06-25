@@ -62,7 +62,7 @@ const Login = () => {
             <div className="flex w-full items-center space-x-2 rounded-2xl bg-gray-50 px-4 ring-2 ring-gray-200 focus-within:ring-blue-400">
               <input
                 ref={passwordRef}
-                type="text"
+                type="password"
                 placeholder="Password"
                 className="my-3 w-full border-none bg-transparent outline-none"
               />

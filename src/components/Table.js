@@ -1,12 +1,15 @@
 import React from "react";
 import { MdDelete } from "react-icons/md";
 import { GetData } from "../context/AppContext";
-const Table = ({ allExpenses }) => {
+const Table = ({ allExpenses, search }) => {
   const { allExpense, deleteExpense } = GetData();
   const number = allExpenses ? allExpense.length : 3;
   const deleteE = (e) => {
     deleteExpense(e.currentTarget.getAttribute("data-id"));
   };
+  let data = allExpense;
+  if (search)
+    data = allExpense.filter((elm) => elm.name.includes(search.toLowerCase()));
   return (
     <div className="w-full mx-auto  ">
       <div className="relative shadow-md sm:rounded-lg">
@@ -39,7 +42,7 @@ const Table = ({ allExpenses }) => {
               </tr>
             </thead>
             <tbody>
-              {allExpense?.slice(0, number).map((elm, i) => (
+              {data?.slice(0, number).map((elm, i) => (
                 <tr
                   key={i}
                   className={`${

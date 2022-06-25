@@ -21,9 +21,12 @@ const Context = createContext();
 export const GetData = () => useContext(Context);
 
 const AppContext = ({ children }) => {
+  let user = "";
   const auth = getAuth();
+  if (localStorage.getItem("user") === "null") user = "";
+  else user = true;
+  const [currentUser, setCurrentUser] = useState(user);
   const [allExpense, setAllExpense] = useState([]);
-  const [currentUser, setCurrentUser] = useState("");
   const googleProvider = new GoogleAuthProvider();
 
   useEffect(() => {
@@ -47,19 +50,24 @@ const AppContext = ({ children }) => {
     });
   };
 
-  const writeExpenses = (newE) => {
-    const expenses = [...allExpense, newE];
-
+  const writeExpenses = (Expenses) => {
     set(ref(db, `users/${currentUser.uid}`), {
-      ...expenses,
+      ...Expenses,
     });
   };
   const addExpense = (data) => {
-    setAllExpense((prev) => [...prev, data]);
-    writeExpenses(data);
+    setAllExpense((prev) => {
+      const newExpenses = [data, ...prev];
+      writeExpenses(newExpenses);
+      return newExpenses;
+    });
   };
   const deleteExpense = (id) => {
-    setAllExpense((prev) => prev.filter((elm) => elm.id !== id));
+    setAllExpense((prev) => {
+      const newExpenses = prev.filter((elm) => elm.id !== id);
+      writeExpenses(newExpenses);
+      return newExpenses;
+    });
   };
   const updateE = (email) => {
     return updateEmail(currentUser, email);
