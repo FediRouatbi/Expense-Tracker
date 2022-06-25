@@ -23,10 +23,10 @@ export const GetData = () => useContext(Context);
 const AppContext = ({ children }) => {
   let user = "";
   const auth = getAuth();
-  const [allExpense, setAllExpense] = useState([]);
   if (localStorage.getItem("user") === "null") user = "";
   else user = true;
   const [currentUser, setCurrentUser] = useState(user);
+  const [allExpense, setAllExpense] = useState([]);
   const googleProvider = new GoogleAuthProvider();
 
   useEffect(() => {

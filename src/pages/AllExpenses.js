@@ -111,7 +111,9 @@ const AllExpenses = () => {
                 ref={productPriceRef}
               />
               <input type="date" placeholder="Date" ref={productDateRef} />
-              <button className="bg-sky-500 text-white">ADD</button>
+              <button className="bg-sky-500 text-white hover:bg-sky-600 font-semibold tracking-widest transition-all ease-in-out">
+                ADD
+              </button>
             </form>
           </h1>
         )}

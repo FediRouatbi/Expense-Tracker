@@ -45,8 +45,8 @@ const fixOrderOfDays = (daysOfWeek) => {
   const dd = String(T.getDate()).padStart(2, "0");
   const mm = String(T.getMonth() + 1).padStart(2, "0");
   const yyyy = T.getFullYear();
-  const today = new Date().getDay() + 1;
-  let ordredDays = daysOfWeek.splice(0, today);
+  const today = new Date().getDay();
+  let ordredDays = daysOfWeek.splice(0, today + 1);
   ordredDays.unshift(...daysOfWeek);
   ordredDays[today] = "Today";
 
