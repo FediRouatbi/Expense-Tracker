@@ -7,7 +7,10 @@ const Title = ({ text }) => {
   return (
     <div className="title">
       <div className="title__text">{text} Expenses</div>
-      <div className="title__view" onClick={() => navTo("/expenses")}>
+      <div
+        className="title__view hover:text-[#69db7c]"
+        onClick={() => navTo("/expenses")}
+      >
         <div className="title__view--text">View All</div>
         <IoIosArrowForward className="title__view--icon" />
       </div>
