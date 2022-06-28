@@ -48,8 +48,7 @@ const fixOrderOfDays = (daysOfWeek) => {
   const today = new Date().getDay();
   let ordredDays = daysOfWeek.splice(0, today + 1);
   ordredDays.unshift(...daysOfWeek);
-  ordredDays[today] = "Today";
-
+  ordredDays.splice(-1, 1, "Today");
   ordredDays = ordredDays
     .reverse()
     .map((el, i) => [el, `${yyyy}-${mm}-${dd - i}`])

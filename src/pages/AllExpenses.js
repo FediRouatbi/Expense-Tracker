@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 
 import { MdLibraryAdd } from "react-icons/md";
 import { v4 as uuid } from "uuid";
@@ -106,7 +106,7 @@ const AllExpenses = () => {
               />
               <input
                 type="number"
-                placeholder="PRICE	"
+                placeholder="PRICE	(negative:expense,positive:income)"
                 required
                 ref={productPriceRef}
               />
