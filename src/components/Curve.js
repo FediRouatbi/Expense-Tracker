@@ -32,17 +32,17 @@ export const options = {
   },
 };
 const days = [
-  "sunday",
-  "monday",
-  "tuesday",
-  "wednesday",
-  "thursday",
-  "friday",
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
   "saturday",
 ];
 const fixOrderOfDays = (daysOfWeek) => {
   const T = new Date();
-  const dd = String(T.getDate()).padStart(2, "0");
+  const dd = T.getDate();
   const mm = String(T.getMonth() + 1).padStart(2, "0");
   const yyyy = T.getFullYear();
   const today = new Date().getDay();
@@ -51,8 +51,9 @@ const fixOrderOfDays = (daysOfWeek) => {
   ordredDays.splice(-1, 1, "Today");
   ordredDays = ordredDays
     .reverse()
-    .map((el, i) => [el, `${yyyy}-${mm}-${dd - i}`])
+    .map((el, i) => [el, `${yyyy}-${mm}-${(dd - i).toString().padStart(2, 0)}`])
     .reverse();
+
   return ordredDays;
 };
 
@@ -89,7 +90,6 @@ const Curve = () => {
       .filter((exp) => exp.price < 0)
       .reduce((acc, curr) => acc + Math.abs(+curr.price), 0)
   );
-
   data.datasets[0].data = expence; //Expense
   data.datasets[1].data = income; //Income
   return (

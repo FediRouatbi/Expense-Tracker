@@ -1,6 +1,4 @@
 import React, { useState, useRef } from "react";
-
-import { MdLibraryAdd } from "react-icons/md";
 import { v4 as uuid } from "uuid";
 import Table from "../components/Table";
 import { GetData } from "../context/AppContext";
@@ -8,7 +6,6 @@ import { ToastContainer, toast } from "react-toastify";
 const AllExpenses = () => {
   const [search, setSearch] = useState("");
   const { addExpense } = GetData();
-  const [add, setAdd] = useState(false);
   const productNameRef = useRef();
   const productColorRef = useRef();
   const productCategoryRef = useRef();
@@ -77,46 +74,41 @@ const AllExpenses = () => {
             onChange={(e) => change(e)}
           />
         </div>
-        <button className=" " onClick={() => setAdd((prev) => !prev)}>
-          <MdLibraryAdd size={30} className="text-sky-500" />
-        </button>
       </div>
       <div className=" flex p-11 pt-40  gap-4 h-screen ">
         <div className="relative  w-2/3 overflow-y-auto">
           <Table allExpenses={true} search={search} />
         </div>
 
-        {add && (
-          <h1 className="flex-grow  ">
-            <form
-              onSubmit={(e) => addE(e)}
-              className="flex flex-col gap-3 [&>*]:border-2 [&>*]:rounded-md [&>*]:p-2"
-            >
-              <input
-                type="text"
-                placeholder="PRODUCT NAME	"
-                required
-                ref={productNameRef}
-              />
-              <input type="text" placeholder="COLOR	" ref={productColorRef} />
-              <input
-                type="text"
-                placeholder="CATEGORY	"
-                ref={productCategoryRef}
-              />
-              <input
-                type="number"
-                placeholder="PRICE	(negative:expense,positive:income)"
-                required
-                ref={productPriceRef}
-              />
-              <input type="date" placeholder="Date" ref={productDateRef} />
-              <button className="bg-sky-500 text-white hover:bg-sky-600 font-semibold tracking-widest transition-all ease-in-out">
-                ADD
-              </button>
-            </form>
-          </h1>
-        )}
+        <h1 className="flex-grow  ">
+          <form
+            onSubmit={(e) => addE(e)}
+            className="flex flex-col gap-3 [&>*]:border-2 [&>*]:rounded-md [&>*]:p-2"
+          >
+            <input
+              type="text"
+              placeholder="PRODUCT NAME	"
+              required
+              ref={productNameRef}
+            />
+            <input type="text" placeholder="COLOR	" ref={productColorRef} />
+            <input
+              type="text"
+              placeholder="CATEGORY	"
+              ref={productCategoryRef}
+            />
+            <input
+              type="number"
+              placeholder="PRICE	(negative:expense,positive:income)"
+              required
+              ref={productPriceRef}
+            />
+            <input type="date" placeholder="Date" ref={productDateRef} />
+            <button className="bg-sky-500 text-white hover:bg-sky-600 font-semibold tracking-widest transition-all ease-in-out">
+              ADD
+            </button>
+          </form>
+        </h1>
       </div>
       <ToastContainer />
     </div>
